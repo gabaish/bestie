@@ -8,6 +8,11 @@
       "expo-router"
     ],
     "name": "bestie",
-    "slug": "bestie"
+    "slug": "bestie",
+    "ios":{
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app requires access to your location to display your current position on the map."
+      }
+    }
   }
 }
