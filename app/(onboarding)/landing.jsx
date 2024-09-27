@@ -26,7 +26,7 @@ const OnboardingScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Logo */}
-      <Image source={{ uri: 'https://via.placeholder.com/50' }} style={styles.logo} />
+      <Image source={{ uri: 'https://via.placeholder.com/75' }} style={styles.logo} />
 
       {/* Main Text */}
       <Text style={styles.mainText}>Text</Text>
@@ -79,7 +79,7 @@ const OnboardingScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1D2B44',
+    backgroundColor: '#213E53',
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
