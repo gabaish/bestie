@@ -48,10 +48,10 @@ const OnboardingScreen = ({ navigation }) => {
         viewabilityConfig={viewabilityConfig}
         style={styles.carousel}
         contentContainerStyle={{
-          paddingHorizontal: (width * 0.05) / 2,  // Ensures items are centered
+          paddingHorizontal: (width * 0.1) / 2,  // Ensures items are centered
         }}
         snapToAlignment="center"  // Snap to center alignment
-        snapToInterval={width * 0.8 + 20}  // The item width + margin
+        snapToInterval={width * 0.8 +15 }  // The item width + margin
         decelerationRate="fast"  // Makes the scrolling snap faster
       />
 
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   carouselItem: {
-    width: width * 0.8, // Make sure items are 80% of screen width
+    width: width * 0.77, // Make sure items are 80% of screen width
     height: 200,
     borderRadius: 10,
     marginHorizontal: 7,
