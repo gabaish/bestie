@@ -91,18 +91,7 @@ export default function MapComponent() {
         />
       </MapView>
 
-      {/* Bottom Buttons */}
-      <View style={styles.bottomBar}>
-        <TouchableOpacity style={styles.bottomButton}>
-          <MaterialIcons name="person" size={24} color="white" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.bottomCenterButton}>
-          <MaterialIcons name="add" size={32} color="white" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.bottomButton}>
-          <MaterialIcons name="group" size={24} color="white" />
-        </TouchableOpacity>
-      </View>
+      
     </View>
   );
 }

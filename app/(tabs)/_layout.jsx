@@ -1,23 +1,26 @@
-import { View, Text, Image} from 'react-native';
-import { Tabs, Redirect} from 'expo-router';
-import { icons } from '../../constants'
+import { View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import { Tabs, Redirect,useRouter } from 'expo-router';
+import { icons } from '../../constants';
+import { MaterialIcons } from '@expo/vector-icons';
+
+
 
 const TabIcon = ({icon, color, name, focused}) => 
     {return (
-        <View className="items-center justify-center gap-1">
+        <View style={[
+            styles.iconContainer,
+            {
+                width: focused ? 65 : 50,
+                height: focused ? 65 : 50, 
+                backgroundColor: focused ? '#4CAF50' : '#2C3E50'
+            }
+            
+        ]}>
             <Image 
-                source= {icon} 
+                source={icon}
                 resizeMode="contain"
-                tintColor={color}
-                className= "w-6 h-6"
-                
-
+                style={{ tintColor: color, width: 24, height: 24 }}
             />
-            <Text style={{color:color}}>
-                {name}
-            </Text>
-
-
         </View> )}
 
 const TabsLayout = () => {
@@ -26,15 +29,11 @@ const TabsLayout = () => {
             <Tabs 
                  screenOptions={{
                     tabBarShowLabel: false,
-                    tabBarActiveTintColor: '#FFA001',
-                    tabBarInactiveTintColor: '#CDCDE0',
-                    tabBarStyle:{
-                        backgroundColor: '#161622',
-                        borderTopWidth: 1,
-                        borderTopColor: '#232533',
-                        height: 84
-                    }
-                 }}   
+                    tabBarActiveTintColor: '#FFFFFF',
+                    tabBarInactiveTintColor: '#8E8E93',
+                    tabBarStyle: styles.tabBarStyle
+                 }}
+                 style= {styles.bottomBar}   
             >
             <Tabs.Screen name= "friends"
                 options= {{
@@ -81,7 +80,7 @@ const TabsLayout = () => {
             <Tabs.Screen name= "playdates"
                 options= {{
                     title: 'playdates',
-                    headerShown: true,
+                    headerShown: false,
                     tabBarIcon: ({color,focused})=>(
                         <TabIcon
                             icon = {icons.playdates}
@@ -107,8 +106,38 @@ const TabsLayout = () => {
                 }}
             />
             </Tabs>
+            
         </>
     )
 }
 
+const styles = StyleSheet.create({
+    
+  iconContainer: {
+        width: 50,
+        height: 50,
+        borderRadius: 35,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginHorizontal: 10, 
+        elevation: 4,
+        marginBottom: -30
+    },
+    tabBarStyle: {
+        backgroundColor: '#2C3E50', // No background color to simulate separate buttons
+        borderTopWidth: 0, // Remove default border line
+        height: 50, // Increased height for the larger center button
+        position: 'absolute',
+        bottom: 65, // Lift the tab bar higher into the screen
+        left: '10%',
+        right: '10%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius:25,
+        
+    }
+});
+
+    
 export default TabsLayout;
