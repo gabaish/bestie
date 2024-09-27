@@ -38,7 +38,7 @@ const TabsLayout = () => {
             <Tabs.Screen name= "friends"
                 options= {{
                     title: 'friends',
-                    headerShown: true,
+                    headerShown: false,
                     tabBarIcon: ({color,focused})=>(
                         <TabIcon
                             icon = {icons.friends}
