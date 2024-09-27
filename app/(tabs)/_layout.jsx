@@ -19,7 +19,7 @@ const TabIcon = ({icon, color, name, focused}) =>
             <Image 
                 source={icon}
                 resizeMode="contain"
-                style={{ tintColor: color, width: 24, height: 24 }}
+                style={{ tintColor: color, width: 28, height: 28 }}
             />
         </View> )}
 
