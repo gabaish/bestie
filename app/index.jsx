@@ -16,7 +16,7 @@ const Home = () => {
                     resizeMode='contain'
                 />
                 <Text className= "text-xl font-bold">Home</Text>
-                <Link href="/friends" >Go To Friends page</Link>
+                <Link href="/home" >Go To Home page</Link>
                 <Link href="/landing" >Go To Landing page</Link>
             </View>
             
