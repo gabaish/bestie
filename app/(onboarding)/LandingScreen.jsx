@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList, Dimensions }
 
 const { width } = Dimensions.get('window');
 
-const OnboardingScreen = ({ navigation }) => {
+const LandingScreen = ({ navigation }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const viewabilityConfig = { viewAreaCoveragePercentThreshold: 50 };
 
@@ -51,7 +51,7 @@ const OnboardingScreen = ({ navigation }) => {
           paddingHorizontal: (width * 0.1) / 2,  // Ensures items are centered
         }}
         snapToAlignment="center"  // Snap to center alignment
-        snapToInterval={width * 0.8 +15 }  // The item width + margin
+        snapToInterval={width * 0.8 + 15 }  // The item width + margin
         decelerationRate="fast"  // Makes the scrolling snap faster
       />
 
@@ -69,7 +69,7 @@ const OnboardingScreen = ({ navigation }) => {
       </View>
 
       {/* Start Button */}
-      <TouchableOpacity style={styles.startButton} onPress={() => navigation.navigate('NextScreen')}>
+      <TouchableOpacity style={styles.startButton} onPress={() => navigation.navigate('RegistrationScreen')}>
         <Text style={styles.startButtonText}>Start</Text>
       </TouchableOpacity>
     </View>
@@ -140,4 +140,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OnboardingScreen;
+export default LandingScreen;

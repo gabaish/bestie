@@ -3,26 +3,22 @@ import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image } from 'rea
 
 const { width } = Dimensions.get('window');
 
-const LoginScreen = ({ navigation }) => {
+const RegistrationScreen = ({ navigation }) => {
 
   const handleGoogleLogin = () => {
-    // Implement Google login logic here
-    console.log('Google login');
+    navigation.navigate('AddDog'); // Navigate to AddDog screen
   };
 
   const handleAppleLogin = () => {
-    // Implement Apple login logic here
-    console.log('Apple login');
+    navigation.navigate('AddDog'); // Navigate to AddDog screen
   };
 
   const handleEmailLogin = () => {
-    // Navigate to email login screen
-    navigation.navigate('EmailLogin');
+    navigation.navigate('AddDog'); // Navigate to AddDog screen
   };
 
   const handleAlreadyHaveAccount = () => {
-    // Handle "I have an account" press
-    console.log('Navigate to login');
+    navigation.navigate('AddDog'); // Navigate to AddDog screen
   };
 
   return (
@@ -156,4 +152,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default RegistrationScreen;

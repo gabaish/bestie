@@ -36,7 +36,7 @@ const AddDogScreen = ({ navigation }) => {
       // Show alert if dog name or photo is not provided
       Alert.alert('Incomplete Information', 'Please provide both the dog name and photo.');
     } else {
-      navigation.navigate('NextScreen');
+      navigation.navigate('QuestionnaireScreen');
     }
   };
 

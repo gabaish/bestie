@@ -24,7 +24,7 @@ const Home = () => {
 
           {/* Navigation Links */}
           <Link href="/friends" className="text-blue-500">Go To Friends page</Link>
-          <Link href="/landing" className="text-blue-500">Go To Onboarding page</Link>
+          <Link href="/onboardingNavigator" className="text-blue-500">Go To Onboarding page</Link>
           <Link href="/addDog" className="text-blue-500">Go To Add Dog Profile page</Link>
           <Link href="/registration" className="text-blue-500">Go To Add Registration page</Link>
         </View>
