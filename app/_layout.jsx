@@ -1,13 +1,11 @@
+import { Stack } from 'expo-router';
 
-import { Slot, Stack } from 'expo-router';
-
-const Layout = () => { 
-    return (      
-            <Stack>
-            <Stack.Screen name="index" options={{headerShown:true}}/>
-            </Stack>    
-            
-    )
+export default function Layout() {
+  return (
+    <Stack>
+      {/* This will automatically pull from the "onboarding" and "tabs" folders */}
+      <Stack.Screen name="(onboarding)/onboardingNavigator" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    </Stack>
+  );
 }
-
-export default Layout;

@@ -5,7 +5,7 @@ import { Picker } from '@react-native-picker/picker'; // For select-like dropdow
 
 const { width } = Dimensions.get('window');
 
-const QuestionnaireScreen = () => {
+const QuestionnaireScreen = ({ navigation }) => {
   const [breedDropdownVisible, setBreedDropdownVisible] = useState(false);
   const [genderDropdownVisible, setGenderDropdownVisible] = useState(false);
   const [sizeDropdownVisible, setSizeDropdownVisible] = useState(false);
@@ -30,6 +30,10 @@ const QuestionnaireScreen = () => {
     setShowDatePicker(false);
     setBirthDate(formattedDate);
   };
+
+  const handleAddButton = () => {
+    navigation.replace('(tabs)');
+  }
 
   return (
     <View style={styles.container}>
@@ -131,7 +135,7 @@ const QuestionnaireScreen = () => {
         <Text style={styles.skipText}>skip</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.addButton}>
+      <TouchableOpacity style={styles.addButton} onPress={handleAddButton}>
         <Text style={styles.addButtonText}>Add</Text>
       </TouchableOpacity>
     </View>
