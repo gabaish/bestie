@@ -172,8 +172,8 @@ const ConversationScreen = () => {
                                 placeholderTextColor="#A9A9A9"
                                 textAlignVertical="center"
                             />
-                            <TouchableOpacity>
-                                <FontAwesome5 name="caret-right" size={40} color="#2C3E50" />
+                            <TouchableOpacity style={styles.sendButton}>
+                                 <FontAwesome5 name="arrow-right" size={24} color="#2C3E50" />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -358,7 +358,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 10,
         backgroundColor: '#FFFFFF',
-        height: 85,
+        height: 110,
+        marginBottom:-10,
+
+        
     },
     innerContainer: {
         flexDirection: 'row',
@@ -372,7 +375,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 15,
-        marginRight: 10,
+        marginRight: 0,
+        marginBottom:20,
+
     },
     messageInput: {
         paddingHorizontal: 15,
@@ -381,5 +386,11 @@ const styles = StyleSheet.create({
         color: '#2C3E50',
         flex: 1,
         marginHorizontal: 13,
+        marginBottom:20,
     },
+
+    sendButton: {
+        marginBottom: 20,
+      },
+
 });

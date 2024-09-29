@@ -24,12 +24,12 @@ const RegistrationScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Main Title */}
-      <Text style={styles.mainText}>Text</Text>
-      <Text style={styles.subText}>text text text text text</Text>
+      <Text style={styles.mainText}>Come on, let's start</Text>
+      <Text style={styles.subText}>First, you'll need to create{"\n"} an account with Bestie.</Text>
 
       {/* Google Login Button */}
       <TouchableOpacity style={styles.googleButton} onPress={handleGoogleLogin}>
-        <Text style={styles.buttonText}>Google</Text>
+        <Text style={styles.buttonText}>Log in with Google</Text>
         <Image
           source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png' }}
           style={styles.icon}
@@ -38,7 +38,7 @@ const RegistrationScreen = ({ navigation }) => {
 
       {/* Apple Login Button */}
       <TouchableOpacity style={styles.appleButton} onPress={handleAppleLogin}>
-        <Text style={styles.appleButtonText}>Apple</Text>
+        <Text style={styles.appleButtonText}>Log in with Apple</Text>
         <Image
           source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg' }}
           style={styles.icon}
@@ -50,7 +50,7 @@ const RegistrationScreen = ({ navigation }) => {
 
       {/* Email Login Button */}
       <TouchableOpacity style={styles.emailButton} onPress={handleEmailLogin}>
-        <Text style={styles.emailButtonText}>Email</Text>
+        <Text style={styles.emailButtonText}>Register with an email</Text>
       </TouchableOpacity>
 
       {/* Already Have an Account */}
@@ -59,7 +59,8 @@ const RegistrationScreen = ({ navigation }) => {
       </TouchableOpacity>
 
       {/* Additional Info Text */}
-      <Text style={styles.footerText}>text text text text text text text text text text text</Text>
+      <Text style={styles.footerText}>By registering, you agree to our Terms of Service and Privacy Policy. You may receive updates and notifications related to your account.
+      </Text>
     </View>
   );
 };

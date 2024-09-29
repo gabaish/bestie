@@ -45,7 +45,7 @@ const AddDogScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Main Title */}
-      <Text style={styles.mainText}>Add Your Dog</Text>
+      <Text style={styles.mainText}>Let’s meet your dog!</Text>
 
       {/* Image Picker Button */}
       <TouchableOpacity style={styles.imageContainer} onPress={pickImage}>

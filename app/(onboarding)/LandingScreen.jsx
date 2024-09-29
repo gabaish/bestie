@@ -29,11 +29,11 @@ const LandingScreen = ({ navigation }) => {
       <Image source={{ uri: 'https://via.placeholder.com/75' }} style={styles.logo} />
 
       {/* Main Text */}
-      <Text style={styles.mainText}>Text</Text>
+      <Text style={styles.mainText}>Bestie</Text>
       
       {/* Sub Text */}
       <Text style={styles.subText}>
-        text text text text text{"\n"}text text text text text
+      Connect with dog lovers and {"\n"}plan playdates for your furry friends
       </Text>
 
       {/* Carousel */}
@@ -70,7 +70,8 @@ const LandingScreen = ({ navigation }) => {
 
       {/* Start Button */}
       <TouchableOpacity style={styles.startButton} onPress={() => navigation.navigate('RegistrationScreen')}>
-        <Text style={styles.startButtonText}>Start</Text>
+        <Text style={styles.startButtonText}>Ready to go?
+        </Text>
       </TouchableOpacity>
     </View>
   );
