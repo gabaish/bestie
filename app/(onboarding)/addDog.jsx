@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, Dimensions, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, Dimensions, Alert,SafeAreaView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 const { width } = Dimensions.get('window');
@@ -43,7 +43,7 @@ const AddDogScreen = ({ navigation }) => {
   const isDisabled = !dogName || !dogPhoto; // Button is disabled if no name or photo is provided
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* Main Title */}
       <Text style={styles.mainText}>Let’s meet your dog!</Text>
 
@@ -82,7 +82,7 @@ const AddDogScreen = ({ navigation }) => {
       >
         <Text style={styles.continueButtonText}>Continue</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -98,7 +98,8 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: '#FFFFFF',
     fontWeight: 'bold',
-    marginBottom: 30,
+    marginBottom: 50,
+    
   },
   imageContainer: {
     width: 160,
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     borderColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 30,
+    marginBottom: 50,
   },
   dogImage: {
     width: 160,
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     color: '#FFFFFF',
-    marginBottom: 15,
+    marginBottom: 20,
   },
   input: {
     width: width * 0.5,
@@ -139,7 +140,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: '#AAAAAA',
     color: '#FFFFFF',
-    marginBottom: 240,
+    marginBottom: 50,
     textAlign: 'center',
     transition: 'fontSize 0.3s', // Add a smooth transition for the font size
   },
@@ -148,6 +149,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     width: width * 0.8,
     alignItems: 'center',
+    bottom: -100,
   },
   continueButtonText: {
     fontSize: 20,

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList, Dimensions,SafeAreaView } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
@@ -24,7 +24,7 @@ const LandingScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* Logo */}
       <Image source={{ uri: 'https://via.placeholder.com/75' }} style={styles.logo} />
 
@@ -73,7 +73,7 @@ const LandingScreen = ({ navigation }) => {
         <Text style={styles.startButtonText}>Ready to go?
         </Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     width: 75,
     height: 75,
     marginBottom: 20,
-    marginTop: 40,
+    marginTop: 75,
   },
   mainText: {
     fontSize: 32,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 250,
+    marginBottom: 220,
   },
   dot: {
     width: 8,

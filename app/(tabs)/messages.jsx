@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, TextInput, FlatList, TouchableOpacity, Image, StyleSheet, SafeAreaView } from 'react-native';
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
@@ -40,7 +40,7 @@ const MessagesTab = () => {
     );
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             {/* Header Section */}
             <View style={styles.header}>
                 <View style={styles.headerTopRow}>
@@ -68,7 +68,7 @@ const MessagesTab = () => {
                 contentContainerStyle={styles.messageList}
             />
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 

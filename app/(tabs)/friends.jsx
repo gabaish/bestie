@@ -22,7 +22,7 @@ const favoriteFriends = [
 const FriendsTab = () => {
     return (
       
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             
             <View style={styles.header}>
                 <View style={styles.headerTopRow}>
@@ -68,7 +68,7 @@ const FriendsTab = () => {
                 contentContainerStyle={styles.friendsList}
             />
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 

@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   },
   topBar: {
     position: 'absolute',
-    top: 40,
+    top: 80,
     left: '5%',
     right: '5%',
     height: 50,
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   },
   filterButtonsContainer: {
     position: 'absolute',
-    top: 100,
+    top: 140,
     left: '5%',
     right: '5%',
     flexDirection: 'row',
@@ -218,10 +218,10 @@ const styles = StyleSheet.create({
     alignItems: 'center', // Align text and button horizontally
   },
   statusButtonWithoutFilters: {
-    top: 100,
+    top: 140,
   },
   statusButtonWithFilters: {
-    top: 145,
+    top: 185,
   },
   statusButton: {
     backgroundColor: '#4CAF50',

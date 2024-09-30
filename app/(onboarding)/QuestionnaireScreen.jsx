@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions, SafeAreaView} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker'; // For the calendar date picker
 import { Picker } from '@react-native-picker/picker'; // For select-like dropdowns
 
@@ -36,7 +36,7 @@ const QuestionnaireScreen = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Nice to meet you ______</Text>
 
       {/* Breed Dropdown */}
@@ -138,7 +138,7 @@ const QuestionnaireScreen = ({ navigation }) => {
       <TouchableOpacity style={styles.addButton} onPress={handleAddButton}>
         <Text style={styles.addButtonText}>Add</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 

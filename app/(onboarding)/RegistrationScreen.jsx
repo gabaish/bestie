@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image, SafeAreaView } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
@@ -22,7 +22,7 @@ const RegistrationScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* Main Title */}
       <Text style={styles.mainText}>Come on, let's start</Text>
       <Text style={styles.subText}>First, you'll need to create{"\n"} an account with Bestie.</Text>
@@ -61,7 +61,7 @@ const RegistrationScreen = ({ navigation }) => {
       {/* Additional Info Text */}
       <Text style={styles.footerText}>By registering, you agree to our Terms of Service and Privacy Policy. You may receive updates and notifications related to your account.
       </Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -99,6 +99,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#FFFFFF',
     fontWeight: 'bold',
+        alignItems: 'center',
+
   },
   appleButton: {
     flexDirection: 'row',
@@ -146,6 +148,7 @@ const styles = StyleSheet.create({
     color: '#AAAAAA',
     textAlign: 'center',
     marginBottom: 10,
+    paddingHorizontal:30,
   },
   icon: {
     width: 25,
