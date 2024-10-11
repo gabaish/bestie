@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 10,
     paddingHorizontal:30,
-    bottom: -90,
+    bottom: -70,
 
   },
   icon: {

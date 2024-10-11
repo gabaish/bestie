@@ -271,15 +271,15 @@ const styles = StyleSheet.create({
     },
     modalContent: {
         backgroundColor: '#2C3E50',
-        padding: 20,
+        padding: 25,
         borderRadius: 50,
         alignItems: 'center',
         marginBottom: 75,
     },
     largeAvatar: {
-        width: 300,
-        height: 300,
-        borderRadius: 20,
+        width: 250,
+        height: 250,
+        borderRadius: 25,
         marginBottom: 20,
     },
     modalButton: {

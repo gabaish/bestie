@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     },
     backButton: {
         marginRight: 15,
+        marginLeft:'5%'
     },
     headerText: {
         fontSize: 24,
