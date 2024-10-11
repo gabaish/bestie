@@ -132,9 +132,9 @@ export default function MapComponent() {
           <View style={styles.horizontalSliderContainer}>
             <Slider
               style={styles.horizontalSlider}
-              minimumValue={0}
-              maximumValue={1500}
-              step={50}
+              minimumValue={100}
+              maximumValue={500}
+              step={100}
               value={radius}
               onValueChange={(value) => setRadius(value)}
               minimumTrackTintColor="#4CAF50"

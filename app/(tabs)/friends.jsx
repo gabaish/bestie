@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     searchIcon: {
         position: 'absolute',
         right: 10,
-        top: 20, // Adjust the top position to vertically center the icon
+        top: 18, // Adjust the top position to vertically center the icon
     },
     // Favorite Friends Section
     favoriteSection: {

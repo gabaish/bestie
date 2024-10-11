@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     searchIcon: {
         position: 'absolute',
         right: 10, // Position the icon at the right end of the TextInput
-        top: 10, // Adjust the top position to vertically center the icon
+        top: 7, // Adjust the top position to vertically center the icon
     },
     // Messages List
     messageList: {

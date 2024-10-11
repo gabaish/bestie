@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
     largeAvatar: {
         width: 300,
         height: 300,
-        borderRadius: 50,
+        borderRadius: 20,
         marginBottom: 20,
     },
     modalButton: {

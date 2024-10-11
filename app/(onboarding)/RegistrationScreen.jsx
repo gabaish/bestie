@@ -31,7 +31,7 @@ const RegistrationScreen = ({ navigation }) => {
       <TouchableOpacity style={styles.googleButton} onPress={handleGoogleLogin}>
         <Text style={styles.buttonText}>Log in with Google</Text>
         <Image
-          source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png' }}
+          source={require('../../assets/icons/registration/google.png')}
           style={styles.icon}
         />
       </TouchableOpacity>
@@ -40,7 +40,7 @@ const RegistrationScreen = ({ navigation }) => {
       <TouchableOpacity style={styles.appleButton} onPress={handleAppleLogin}>
         <Text style={styles.appleButtonText}>Log in with Apple</Text>
         <Image
-          source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg' }}
+          source={require('../../assets/icons/registration/apple.png')}
           style={styles.icon}
         />
       </TouchableOpacity>
@@ -61,6 +61,7 @@ const RegistrationScreen = ({ navigation }) => {
       {/* Additional Info Text */}
       <Text style={styles.footerText}>By registering, you agree to our Terms of Service and Privacy Policy. You may receive updates and notifications related to your account.
       </Text>
+      
     </SafeAreaView>
   );
 };
@@ -78,6 +79,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: 'bold',
     marginBottom: 10,
+    marginTop:90,
   },
   subText: {
     fontSize: 16,
@@ -89,6 +91,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#4A708B',
     padding: 15,
+    paddingHorizontal:20,
     borderRadius: 25,
     width: width * 0.8,
     justifyContent: 'space-between',
@@ -106,6 +109,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
     padding: 15,
+    paddingHorizontal:20,
     borderRadius: 25,
     width: width * 0.8,
     justifyContent: 'space-between',
@@ -149,6 +153,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 10,
     paddingHorizontal:30,
+    bottom: -90,
+
   },
   icon: {
     width: 25,
