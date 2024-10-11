@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -7,7 +7,7 @@ const SettingsScreen = () => {
     const navigation = useNavigation(); // Initialize navigation hook
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             {/* Settings Header */}
             <View style={styles.headerContainer}>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
@@ -25,7 +25,7 @@ const SettingsScreen = () => {
                     </TouchableOpacity>
                 ))}
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 
@@ -51,6 +51,8 @@ const styles = StyleSheet.create({
         color: '#2C3E50',
     },
     settingsContainer: {
+        width: '90%',
+        alignSelf: 'center',
         marginTop: 20,
     },
     settingsItem: {

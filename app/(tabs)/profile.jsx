@@ -91,7 +91,7 @@ const ProfileScreen = () => {
     );
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             {/* Profile Header */}
             <View style={styles.headerContainer}>
                 <Text style={styles.headerText}>Profile</Text>
@@ -147,7 +147,7 @@ const ProfileScreen = () => {
                     </View>
                 </View>
             </Modal>
-        </View>
+        </SafeAreaView>
     );
 };
 
@@ -166,7 +166,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop:20,
         paddingBottom: 0,
-        paddingHorizontal:20
+        paddingHorizontal:20,
+        
     },
     headerText: {
         fontSize: 24,
@@ -182,12 +183,12 @@ const styles = StyleSheet.create({
     },
     // Tabs Container styles
     tabsContainer: {
+        width: '90%',
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
         marginVertical: 10,
         backgroundColor: '#E0E0E0',
         borderRadius: 15,
+        alignSelf: 'center'
     },
     tabButton: {
         flex: 1,
@@ -211,6 +212,8 @@ const styles = StyleSheet.create({
     },
     dogInfoContainer: {
         alignItems: 'center',
+        alignSelf: 'center',
+        width: '80%'
     },
     avatar: {
         width: 100,
@@ -244,9 +247,11 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     familyContainer: {
+        alignItems: 'center',
         marginTop: 10,
     },
     familyCard: {
+        width: '85%',
         backgroundColor: '#F0F0F0',
         padding: 20,
         borderRadius: 15,

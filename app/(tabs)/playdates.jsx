@@ -66,6 +66,7 @@ const PlaydatesTab = () => {
           <Text style={styles.headerDateText}>{getCurrentMonthAndYear()}</Text>
         </View>
       </View>
+      
 
       {/* Date Picker */}
       <View style={styles.datePickerContainer}>
@@ -175,6 +176,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   headerTopRow: {
+    marginTop: '15%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

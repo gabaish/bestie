@@ -6,6 +6,8 @@ export default function Layout() {
       {/* This will automatically pull from the "onboarding" and "tabs" folders */}
       <Stack.Screen name="(onboarding)/onboardingNavigator" options={{ headerShown: false }} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="settings" options={{ headerShown: false }} />
+      <Stack.Screen name="conversation/[id]" options={{ headerShown: false }} />
     </Stack>
   );
 }

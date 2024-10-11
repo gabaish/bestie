@@ -4,6 +4,7 @@ import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useLocalSearchParams } from 'expo-router'; // Import for dynamic route params
 import { useNavigation } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Import the image from the assets folder (this is for React Native)
 const avatarImage = require('../../assets/images/boca2.png');
@@ -57,6 +58,7 @@ const ConversationScreen = () => {
     );
 
     return (
+        
         <KeyboardAvoidingView
             style={styles.container}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -180,6 +182,7 @@ const ConversationScreen = () => {
                 </View>
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
+        
     );
 };
 
@@ -189,9 +192,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F4F5F7',
+        
     },
     // Header Styles
     header: {
+        marginTop: '12%',
         flexDirection: 'row',
         alignItems: 'center',
         padding: 20,
