@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from './LandingScreen';
 import RegistrationScreen from './RegistrationScreen';
 import AddDog from './addDog';
-import QuestionnaireScreen from './QuestionnaireScreen';
+import QuestionnaireScreen from './[QuestionnaireScreen]';
 
 const OnboardingStack = createStackNavigator();
 
