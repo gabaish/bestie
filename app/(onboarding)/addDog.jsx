@@ -36,10 +36,12 @@ const AddDogScreen = ({ navigation }) => {
       // Show alert if dog name or photo is not provided
       Alert.alert('Incomplete Information', 'Please provide both the dog name and photo.');
     } else {
-      navigation.navigate('QuestionnaireScreen');
+      navigation.navigate('QuestionnaireScreen', { dogName: dogName });
     }
   };
 
+
+ 
   const isDisabled = !dogName || !dogPhoto; // Button is disabled if no name or photo is provided
 
   return (
@@ -69,7 +71,7 @@ const AddDogScreen = ({ navigation }) => {
         placeholder="Enter your dog's name"
         placeholderTextColor="#AAAAAA"
         value={dogName}
-        onChangeText={setDogName}
+        onChangeText={(text)=>setDogName(text)}
       />
 
       {/* Continue Button */}
