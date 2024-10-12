@@ -4,6 +4,7 @@ import LandingScreen from './LandingScreen';
 import RegistrationScreen from './RegistrationScreen';
 import AddDog from './addDog';
 import QuestionnaireScreen from './QuestionnaireScreen';
+import RegisterWithEmail from './RegisterWithEmail';
 
 const OnboardingStack = createStackNavigator();
 
@@ -28,6 +29,11 @@ const OnboardingNavigator = () => {
             <OnboardingStack.Screen 
                 name="QuestionnaireScreen" 
                 component={QuestionnaireScreen} 
+                options={{ headerShown: false }} 
+            />
+            <OnboardingStack.Screen 
+                name="RegisterWithEmail" 
+                component={RegisterWithEmail} 
                 options={{ headerShown: false }} 
             />
         </OnboardingStack.Navigator>

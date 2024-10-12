@@ -1,4 +1,5 @@
 import React from 'react';
+import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image, SafeAreaView } from 'react-native';
 
 const { width } = Dimensions.get('window');
@@ -14,7 +15,7 @@ const RegistrationScreen = ({ navigation }) => {
   };
 
   const handleEmailLogin = () => {
-    navigation.navigate('AddDog'); // Navigate to AddDog screen
+    navigation.navigate('RegisterWithEmail'); // Navigate to AddDog screen
   };
 
   const handleAlreadyHaveAccount = () => {
@@ -51,6 +52,7 @@ const RegistrationScreen = ({ navigation }) => {
       {/* Email Login Button */}
       <TouchableOpacity style={styles.emailButton} onPress={handleEmailLogin}>
         <Text style={styles.emailButtonText}>Register with an email</Text>
+         <MaterialIcons name="mail" size={20} color="#F2F2F2"/>
       </TouchableOpacity>
 
       {/* Already Have an Account */}
@@ -78,14 +80,14 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: '#FFFFFF',
     fontWeight: 'bold',
-    marginBottom: 10,
-    marginTop:90,
+    marginBottom: 20,
+    marginTop:70,
   },
   subText: {
     fontSize: 16,
     color: '#FFFFFF',
     textAlign: 'center',
-    marginBottom: 30,
+    marginBottom: 60,
   },
   googleButton: {
     flexDirection: 'row',
@@ -122,12 +124,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   emailButton: {
+    flexDirection: 'row',
     borderColor: '#FFFFFF',
     borderWidth: 1,
     padding: 15,
+    paddingHorizontal:20,
     borderRadius: 25,
     width: width * 0.8,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 20,
   },
@@ -136,6 +140,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: 'bold',
   },
+
   orText: {
     fontSize: 16,
     color: '#FFFFFF',
@@ -153,7 +158,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 10,
     paddingHorizontal:30,
-    bottom: -90,
+    bottom: -70,
 
   },
   icon: {

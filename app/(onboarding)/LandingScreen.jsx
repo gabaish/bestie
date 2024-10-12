@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     width: 75,
     height: 75,
     marginBottom: 20,
-    marginTop: 75,
+    marginTop: 100,
   },
   mainText: {
     fontSize: 32,
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#FFFFFF',
     textAlign: 'center',
-    marginBottom: 40,
+    marginBottom: 50,
   },
   carousel: {
     marginBottom: 20,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 220,
+    marginBottom: 200,
   },
   dot: {
     width: 8,
