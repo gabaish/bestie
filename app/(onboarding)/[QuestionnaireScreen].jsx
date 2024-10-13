@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text,Image, TouchableOpacity, TextInput, StyleSheet, Dimensions, SafeAreaView, FlatList, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { View, Text, Image, TouchableOpacity, TextInput, StyleSheet, Dimensions, SafeAreaView, FlatList, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { icons } from '../../constants';
 
 const { width, height } = Dimensions.get('window');
@@ -9,14 +9,14 @@ const QuestionnaireScreen = ({ navigation, route }) => {
   const [breedDropdownVisible, setBreedDropdownVisible] = useState(false);
   const [selectedBreed, setSelectedBreed] = useState('');
   const [breedSearchText, setBreedSearchText] = useState('');
-  const breeds = ['Golden Retriever', 'Husky', 'Mixed Breed', 'pitbull', 'wind' , 'labrador'];
+  const breeds = ['Golden Retriever', 'Husky', 'Mixed Breed', 'pitbull', 'wind', 'labrador'];
   const [filteredBreeds, setFilteredBreeds] = useState(breeds);
 
   const [genderDropdownVisible, setGenderDropdownVisible] = useState(false);
   const [selectedGender, setSelectedGender] = useState('');
   const [sizeDropdownVisible, setSizeDropdownVisible] = useState(false);
   const [selectedSize, setSelectedSize] = useState('');
-  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [birthDate, setBirthDate] = useState('');
 
   const { dogName } = route.params || {};
@@ -24,13 +24,26 @@ const QuestionnaireScreen = ({ navigation, route }) => {
   const handleBreedSelect = (breed) => {
     setSelectedBreed(breed);
     setBreedDropdownVisible(false);
-    setBreedSearchText(breed); // Set selected breed to text input as well
-    Keyboard.dismiss(); // Dismiss keyboard after selection
+    setBreedSearchText(breed);
+    Keyboard.dismiss();
   };
 
   const handleSearchChange = (text) => {
     setBreedSearchText(text);
     setFilteredBreeds(breeds.filter((breed) => breed.toLowerCase().includes(text.toLowerCase())));
+  };
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirmDate = (date) => {
+    setBirthDate(date.toLocaleDateString());
+    hideDatePicker();
   };
 
   const handleAddButton = () => {
@@ -49,7 +62,7 @@ const QuestionnaireScreen = ({ navigation, route }) => {
             style={styles.inputText}
             placeholder=""
             value={breedSearchText}
-            onFocus={() => setBreedDropdownVisible(true)} // Show dropdown on focus
+            onFocus={() => setBreedDropdownVisible(true)}
             onChangeText={handleSearchChange}
           />
         </TouchableOpacity>
@@ -58,7 +71,7 @@ const QuestionnaireScreen = ({ navigation, route }) => {
       {breedDropdownVisible && (
         <TouchableWithoutFeedback onPress={() => { setBreedDropdownVisible(false); Keyboard.dismiss(); }}>
           <View style={styles.overlay}>
-            <View style={[styles.dropdownContainer, { top: '38 %' }]}>
+            <View style={[styles.dropdownContainer, { top: '38%' }]}>
               <FlatList
                 data={filteredBreeds}
                 keyExtractor={(item) => item}
@@ -68,7 +81,7 @@ const QuestionnaireScreen = ({ navigation, route }) => {
                     <Text style={styles.optionText}>{item}</Text>
                   </TouchableOpacity>
                 )}
-                keyboardShouldPersistTaps="handled" // Dismiss keyboard on tap outside of input
+                keyboardShouldPersistTaps="handled"
               />
             </View>
           </View>
@@ -78,17 +91,20 @@ const QuestionnaireScreen = ({ navigation, route }) => {
       {/* Birth Date Section */}
       <View style={[styles.section, breedDropdownVisible && styles.disabledSection]}>
         <Text style={styles.label}>Birth date</Text>
-        <TouchableOpacity style={styles.button} onPress={() => setShowDatePicker(true)}>
-          <Text style={styles.buttonText}>{birthDate || ' '}</Text>
+        <TouchableOpacity style={styles.button} onPress={showDatePicker}>
+          <Text style={styles.inputText}>{birthDate || ' '}</Text>
         </TouchableOpacity>
-        {showDatePicker && (
-          <DateTimePicker
-            value={new Date()}
-            mode="date"
-            display="default"
-            onChange={(event, date) => setBirthDate(date ? date.toLocaleDateString() : '')}
-          />
-        )}
+        <DateTimePickerModal
+          isVisible={isDatePickerVisible}
+          mode="date"
+          onConfirm={handleConfirmDate}
+          onCancel={hideDatePicker}
+          display="spinner"
+          headerTextIOS="Pick a Date"
+          textColor="#FFFFFF"
+          buttonTextColorIOS='white'
+          
+        />
       </View>
 
       {/* Gender Section */}
@@ -99,18 +115,18 @@ const QuestionnaireScreen = ({ navigation, route }) => {
         </TouchableOpacity>
         {genderDropdownVisible && (
           <TouchableWithoutFeedback onPress={() => setGenderDropdownVisible(false)}>
-          <View style= {styles.overlay}>
-          <View style={[styles.dropdownContainer, styles.modalDropdown, { top: '120 %' }]}>
-            <TouchableOpacity style={styles.genderOption} onPress={() => { setSelectedGender('Female'); setGenderDropdownVisible(false); }}>
-            <Text style={[styles.genderIcon, { color: '#FF69B4' }]}>♀️</Text>
-            <Text style={styles.genderLabel}>Female</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.genderOption} onPress={() => { setSelectedGender('Male'); setGenderDropdownVisible(false); }}>
-            <Text style={[styles.genderIcon, { color: '#00BFFF' }]}>♂️</Text>
-            <Text style={styles.genderLabel}>Male</Text>
-            </TouchableOpacity>
-          </View>
-          </View>
+            <View style={styles.overlay}>
+              <View style={[styles.dropdownContainer, styles.modalDropdown, { top: '120%' }]}>
+                <TouchableOpacity style={styles.genderOption} onPress={() => { setSelectedGender('Female'); setGenderDropdownVisible(false); }}>
+                  <Text style={[styles.genderIcon, { color: '#FF69B4' }]}>♀️</Text>
+                  <Text style={styles.genderLabel}>Female</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.genderOption} onPress={() => { setSelectedGender('Male'); setGenderDropdownVisible(false); }}>
+                  <Text style={[styles.genderIcon, { color: '#00BFFF' }]}>♂️</Text>
+                  <Text style={styles.genderLabel}>Male</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </TouchableWithoutFeedback>
         )}
       </View>
@@ -122,32 +138,25 @@ const QuestionnaireScreen = ({ navigation, route }) => {
           <Text style={styles.inputText}>{selectedSize || ' '}</Text>
         </TouchableOpacity>
         {sizeDropdownVisible && (
-          <View style={[styles.dropdownContainer, styles.modalDropdown, { top: '120 %' }]}>
-          <TouchableOpacity style={styles.genderOption} onPress={() => { setSelectedSize('Small'); setSizeDropdownVisible(false); }}>
-            <Image 
-                source={icons.dogSizeSmall}
-                resizeMode="contain"
-                style={{ width: 40, height: 40 }}
-            />
-            <Text style={styles.genderLabel}>Small</Text>
+          <View style={[styles.dropdownContainer, styles.modalDropdown, { top: '120%' }]}>
+            <TouchableOpacity style={styles.sizeOption} onPress={() => { setSelectedSize('Small'); setSizeDropdownVisible(false); }}>
+              <View style={styles.iconWithLabel}>
+                <Image source={icons.dogSizeSmall} resizeMode="contain" style={{ width: 40, height: 40 }} />
+                <Text style={styles.sizeLabel}>Small</Text>
+              </View>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.genderOption} onPress={() => { setSelectedSize('Medium'); setSizeDropdownVisible(false); }}>
-            <Image 
-                source={icons.dogSizeMedium}
-                resizeMode="contain"
-                style={{ width: 60, height: 60 }}
-            />
-            <Text style={styles.genderLabel}>Medium</Text>
+            <TouchableOpacity style={styles.sizeOption} onPress={() => { setSelectedSize('Medium'); setSizeDropdownVisible(false); }}>
+              <View style={styles.iconWithLabel}>
+                <Image source={icons.dogSizeMedium} resizeMode="contain" style={{ width: 60, height: 60 }} />
+                <Text style={styles.sizeLabel}>Medium</Text>
+              </View>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.genderOption} onPress={() => { setSelectedSize('Big'); setSizeDropdownVisible(false); }}>
-            <Image 
-                source={icons.dogSizeBig}
-                resizeMode="contain"
-                style={{ width: 80, height: 80 }}
-            />
-            <Text style={styles.genderLabel}>Big</Text>
+            <TouchableOpacity style={styles.sizeOption} onPress={() => { setSelectedSize('Big'); setSizeDropdownVisible(false); }}>
+              <View style={styles.iconWithLabel}>
+                <Image source={icons.dogSizeBig} resizeMode="contain" style={{ width: 80, height: 80 }} />
+                <Text style={styles.sizeLabel}>Big</Text>
+              </View>
             </TouchableOpacity>
-            
           </View>
         )}
       </View>
@@ -168,7 +177,6 @@ export default QuestionnaireScreen;
 
 const styles = StyleSheet.create({
   container: {
-    
     flex: 1,
     backgroundColor: '#213E53',
     justifyContent: 'center',
@@ -176,7 +184,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   title: {
-    
     fontSize: 32,
     color: 'white',
     marginBottom: 30,
@@ -219,7 +226,7 @@ const styles = StyleSheet.create({
   dropdownContainer: {
     position: 'absolute',
     backgroundColor: '#FFF',
-    alignSelf:'center',
+    alignSelf: 'center',
     borderRadius: 10,
     padding: 10,
     width: width * 0.75,
@@ -235,8 +242,7 @@ const styles = StyleSheet.create({
   modalDropdown: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
-    
+    alignItems: 'flex-end',
   },
   genderOption: {
     alignItems: 'center',
@@ -250,7 +256,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#2C3E50',
   },
-
+  iconWithLabel: {
+  alignItems: 'center', // Center the items horizontally
+  justifyContent: 'flex-start', // Align the text and image vertically
+  },
+  sizeLabel: {
+    marginTop: 5, // Add some space between the image and the text
+    fontSize: 16,
+    color: '#2C3E50',
+    textAlign: 'center', // Center the text
+  },
+  sizeOption: {
+    alignItems: 'center',
+    paddingHorizontal: 10,
+  },
   skipButton: {
     marginBottom: 50,
   },
