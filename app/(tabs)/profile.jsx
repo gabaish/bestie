@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, Modal,SafeAreaView } from 'react-native';
 import Slider from '@react-native-community/slider'; // Correct import
 import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker'; // Add ImagePicker import
 import { useNavigation } from '@react-navigation/native';
 
 const avatarImage = require('../../assets/images/boca2.png'); // Make sure this image path is correct
@@ -17,6 +18,8 @@ const ProfileScreen = () => {
         energyLevel: 50, // Default energy level slider value
     });
     const [modalVisible, setModalVisible] = useState(false);
+    const [dogPhoto, setDogPhoto] = useState(null); // Move useState inside component
+
 
     // Function to open the image modal
     const handleImagePress = () => {
@@ -28,11 +31,30 @@ const ProfileScreen = () => {
         setModalVisible(false);
     };
 
+    const pickImage = async () => {
+        const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (!permissionResult.granted) {
+          alert("Permission to access camera roll is required!");
+          return;
+        }
+    
+        const result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          aspect: [1, 1],
+          quality: 1,
+        });
+    
+        if (!result.canceled && result.assets && result.assets.length > 0) {
+          setDogPhoto(result.assets[0].uri); // Update dogPhoto with selected image URI
+        }
+      };
+    
     const renderDogInfo = () => (
         <View style={styles.dogInfoContainer}>
             {/* Clickable Avatar */}
             <TouchableOpacity onPress={handleImagePress}>
-                <Image source={avatarImage} style={styles.avatar} />
+              <Image source={dogPhoto ? { uri: dogPhoto } : avatarImage} style={styles.avatar} />
             </TouchableOpacity>
 
             <View style={styles.infoContainer}>
@@ -137,8 +159,8 @@ const ProfileScreen = () => {
             >
                 <View style={styles.modalContainer}>
                     <View style={styles.modalContent}>
-                        <Image source={avatarImage} style={styles.largeAvatar} />
-                        <TouchableOpacity style={styles.modalButton} onPress={handleCloseModal}>
+                         <Image source={dogPhoto ? { uri: dogPhoto } : avatarImage} style={styles.largeAvatar} />
+                    <TouchableOpacity style={styles.modalButton} onPress={pickImage}>
                             <Text style={styles.modalButtonText}>Change Image</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.modalCloseButton} onPress={handleCloseModal}>
@@ -277,9 +299,9 @@ const styles = StyleSheet.create({
         marginBottom: 75,
     },
     largeAvatar: {
-        width: 250,
-        height: 250,
-        borderRadius: 25,
+        width: 300,
+        height: 300,
+        borderRadius: 30,
         marginBottom: 20,
     },
     modalButton: {
