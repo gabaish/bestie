@@ -3,11 +3,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from './LandingScreen';
 import RegistrationScreen from './RegistrationScreen';
 import AddDog from './addDog';
-import QuestionnaireScreen from './QuestionnaireScreen';
 import RegisterWithEmail from './RegisterWithEmail';
-=======
+
 import QuestionnaireScreen from './[QuestionnaireScreen]';
->>>>>>> 29bd7834e6bcb5a0a1d4105527f5393c87d9dd42
+
 
 const OnboardingStack = createStackNavigator();
 

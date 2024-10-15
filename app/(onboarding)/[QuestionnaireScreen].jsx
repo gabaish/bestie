@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
   modalDropdown: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'flex-end',
+    alignItems: 'flex-end', //change here
   },
   genderOption: {
     alignItems: 'center',
