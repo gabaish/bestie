@@ -11,6 +11,8 @@ export default function MapComponent() {
   const [showRadiusSlider, setShowRadiusSlider] = useState(false);
   const [mapRef, setMapRef] = useState(null);
   const [radius, setRadius] = useState(500);
+  const [activityStatus, setActivityStatus] = useState("Public");
+  const [showStatusOptions, setShowStatusOptions] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -33,6 +35,15 @@ export default function MapComponent() {
   const toggleFilters = () => {
     setShowFilters((prev) => !prev);
   };
+
+  const handlePress = (status) => {
+    setActivityStatus(status);
+    handleStatusPress();
+  };
+  
+  const handleStatusPress = () => {
+    setShowStatusOptions(!showStatusOptions);
+  }
 
   const centerToUserLocation = async () => {
     if (location && mapRef) {
@@ -87,17 +98,43 @@ export default function MapComponent() {
           </View>
         )}
 
+        {!showStatusOptions && 
+          <View
+          style={[
+            styles.statusButtonContainer,
+            showFilters ? styles.statusButtonWithFilters : styles.statusButtonWithoutFilters,
+          ]}
+          >
+           <TouchableOpacity style={[styles.statusButton, 
+           activityStatus === "Public" ? styles.statusPublic : 
+           activityStatus === "Friends Only" ? styles.statusFriendsOnly : 
+           activityStatus === "Private" ? styles.statusPrivate : null]} onPress={handleStatusPress}>
+            <Text style={styles.statusButtonText}>{activityStatus}</Text>
+            </TouchableOpacity>
+          </View>
+        }
+        
+
         {/* Status Button */}
-        <View
+        {showStatusOptions && 
+          <View
           style={[
             styles.statusButtonContainer,
             showFilters ? styles.statusButtonWithFilters : styles.statusButtonWithoutFilters,
           ]}
         >
-          <TouchableOpacity style={styles.statusButton}>
-            <Text style={styles.statusButtonText}>Active</Text>
+          <TouchableOpacity style={[styles.statusButton, styles.statusPublic]} onPress={()=> handlePress("Public")}>
+            <Text style={styles.statusButtonText}>Public</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.statusButton, styles.statusFriendsOnly]} onPress={()=> handlePress("Friends Only")}>
+            <Text style={styles.statusButtonText}>Friends Only</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.statusButton, styles.statusPrivate]} onPress={()=> handlePress("Private")}>
+            <Text style={styles.statusButtonText}>Private</Text>
           </TouchableOpacity>
         </View>
+        }
+        
 
         {/* Map */}
         <MapView
@@ -212,22 +249,31 @@ const styles = StyleSheet.create({
   },
   statusButtonContainer: {
     position: 'absolute',
-    left: 20,
+    left: '6%',
+    width:'75%',
     zIndex: 2,
     flexDirection: 'row',
-    alignItems: 'center', // Align text and button horizontally
+    justifyContent: 'space-between',
   },
   statusButtonWithoutFilters: {
-    top: 140,
+    top: '17%',
   },
   statusButtonWithFilters: {
-    top: 185,
+    top: '23%',
   },
   statusButton: {
-    backgroundColor: '#4CAF50',
     paddingVertical: 5,
     paddingHorizontal: 15,
     borderRadius: 20,
+  },
+  statusPublic: {
+    backgroundColor: '#4CAF50',
+  },
+  statusFriendsOnly: {
+    backgroundColor: '#EF9C66',
+  },
+  statusPrivate: {
+    backgroundColor: '#7F7F7F',
   },
   statusButtonText: {
     color: 'white',
