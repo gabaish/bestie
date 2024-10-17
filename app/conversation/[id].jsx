@@ -62,7 +62,6 @@ const ConversationScreen = () => {
         <KeyboardAvoidingView
             style={styles.container}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}
         >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
@@ -196,7 +195,7 @@ const styles = StyleSheet.create({
     },
     // Header Styles
     header: {
-        marginTop: '12%',
+        paddingTop: '14%',
         flexDirection: 'row',
         alignItems: 'center',
         padding: 20,
@@ -364,9 +363,7 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: '#FFFFFF',
         height: 110,
-        marginBottom:-10,
-
-        
+        marginBottom:-10,  
     },
     innerContainer: {
         flexDirection: 'row',
@@ -392,6 +389,7 @@ const styles = StyleSheet.create({
         flex: 1,
         marginHorizontal: 13,
         marginBottom:20,
+       
     },
 
     sendButton: {
