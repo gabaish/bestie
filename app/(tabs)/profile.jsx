@@ -12,9 +12,10 @@ const ProfileScreen = () => {
     const [activeTab, setActiveTab] = useState('dogInfo');
     const [dogInfo, setDogInfo] = useState({
         name: 'Boca',
+        gender: 'Female',
         breed: 'Mixed',
-        birthDate: '14/02',
-        size: '17kg',
+        age: '1 year',
+        size: 'Medium',
         energyLevel: 50, // Default energy level slider value
     });
     const [modalVisible, setModalVisible] = useState(false);
@@ -53,50 +54,53 @@ const ProfileScreen = () => {
     const renderDogInfo = () => (
         <View style={styles.dogInfoContainer}>
             {/* Clickable Avatar */}
-            <TouchableOpacity onPress={handleImagePress}>
-              <Image source={dogPhoto ? { uri: dogPhoto } : avatarImage} style={styles.avatar} />
-            </TouchableOpacity>
-
-            <View style={styles.infoContainer}>
-                <Text style={styles.label}>Name</Text>
-                <TextInput
-                    style={styles.input}
-                    value={dogInfo.name}
-                    onChangeText={(text) => setDogInfo({ ...dogInfo, name: text })}
+            <View style={styles.nameAndImg}>
+                <TouchableOpacity onPress={handleImagePress}>
+                <Image source={dogPhoto ? { uri: dogPhoto } : avatarImage} style={styles.avatar} />
+                </TouchableOpacity>
+                <Text style={[styles.label, {fontSize:24}]}> {dogInfo.name} </Text>
+                <FontAwesome5
+                    name={dogInfo.gender === "Male" ? "mars" : "venus"}
+                    size={24} // Adjust size as needed
+                    color={dogInfo.gender === "Male" ? 'blue' : 'pink'}
                 />
-                
-                <Text style={styles.label}>Breed</Text>
-                <TextInput
-                    style={styles.input}
-                    value={dogInfo.breed}
-                    onChangeText={(text) => setDogInfo({ ...dogInfo, breed: text })}
-                />
+            </View>
 
-                <Text style={styles.label}>Birth date</Text>
-                <TextInput
-                    style={styles.input}
-                    value={dogInfo.birthDate}
-                    onChangeText={(text) => setDogInfo({ ...dogInfo, birthDate: text })}
-                />
-
-                <Text style={styles.label}>Size</Text>
-                <TextInput
-                    style={styles.input}
-                    value={dogInfo.size}
-                    onChangeText={(text) => setDogInfo({ ...dogInfo, size: text })}
-                />
-
-                <Text style={styles.label}>Energy level</Text>
+            <Text style={styles.headline}>Info</Text>
+            <View style={styles.infoData}>
+                <View style={styles.infoRow}>
+                    <View style={styles.infoItem}>
+                        <Text style={styles.label}>Breed</Text>
+                        <Text style={styles.labelInfo}>{dogInfo.breed} </Text>
+                    </View>
+                    <View style={styles.infoItem}>
+                        <Text style={styles.label}>Age</Text>
+                        <Text style={styles.labelInfo}>{dogInfo.age} </Text>
+                    </View>
+                    <View style={styles.infoItem}>
+                        <Text style={styles.label}>Size</Text>
+                        <Text style={styles.labelInfo}>{dogInfo.size} </Text>
+                    </View>
+                </View>
+                <View style={[styles.infoRow, {marginTop:15}]}>
+                    <View style={styles.infoItem}>
+                    <Text style={styles.label}>Energy level</Text>
+                    </View>
+                </View>
+                <View style={styles.sliderView}>
                 <Slider
-                    style={styles.slider}
-                    minimumValue={0}
-                    maximumValue={100}
-                    value={dogInfo.energyLevel}
-                    onValueChange={(value) => setDogInfo({ ...dogInfo, energyLevel: value })}
-                    minimumTrackTintColor="#2C3E50"  // Filled part
-                    maximumTrackTintColor="#C0C0C0"  // Unfilled part
-                    thumbTintColor="#2C3E50"         // Color of the thumb (dot)
+                            style={styles.slider}
+                            minimumValue={0}
+                            maximumValue={100}
+                            value={dogInfo.energyLevel}
+                            onValueChange={(value) => setDogInfo({ ...dogInfo, energyLevel: value })}
+                            minimumTrackTintColor="#2C3E50"  
+                            maximumTrackTintColor="#C0C0C0"  
+                            thumbTintColor="#2C3E50"
+                                     
                 />
+                </View>  
+
             </View>
         </View>
     );
@@ -217,7 +221,7 @@ const styles = StyleSheet.create({
         padding: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 15,
+        borderRadius: 10,
         backgroundColor: '#E0E0E0',
         margin: 7,
     },
@@ -235,11 +239,19 @@ const styles = StyleSheet.create({
     dogInfoContainer: {
         alignItems: 'center',
         alignSelf: 'center',
-        width: '80%'
+        width: '87%'
+    },
+    nameAndImg:{
+        flexDirection :'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        width: '100%',
+        marginBottom: '10%',
+        gap:'15%'
     },
     avatar: {
-        width: 100,
-        height: 100,
+        width: 85,
+        height: 85,
         borderRadius: 100,
         marginBottom: 0,
         marginTop: 10,
@@ -248,11 +260,38 @@ const styles = StyleSheet.create({
         marginTop: 0,
         width: '100%',
     },
+    headline: {
+        color:'#8D8D8D',
+        flexDirection :'row',
+        justifyContent: 'flex-start',
+        width: '100%',
+        marginBottom: '3%',
+        fontSize: 16
+    },
+    infoData:{
+        backgroundColor: 'white',
+        borderRadius: 25,
+        padding: 18,
+        paddingVertical: 20,
+        width:'100%'
+    },
+    infoRow:{
+        flexDirection:'row',
+        width:'100%',
+        justifyContent:'space-between',
+    },
     label: {
         fontSize: 18,
         fontWeight: 'bold',
         color: '#2C3E50',
         marginVertical: 7,
+    },
+    labelInfo:{
+        backgroundColor:'#F7F7F7',
+        borderRadius: 17,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        overflow: 'hidden'
     },
     input: {
         borderBottomWidth: 2,
@@ -263,7 +302,14 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         width: '70%',
     },
+    sliderView: {
+        backgroundColor:'#F7F7F7',
+        borderRadius: 25,
+        paddingHorizontal: 15,
+        overflow: 'hidden'
+    },
     slider: {
+        alignSelf:'center',
         width: '100%',
         height: 40,
         marginVertical: 10,
