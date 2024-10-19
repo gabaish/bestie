@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, Modal, Pressable, TextInput, SafeAreaView } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, Modal, Pressable, TextInput, FlatList } from 'react-native';
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
@@ -36,6 +36,17 @@ const PlaydatesTab = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState(new Date());
   const [locationInput, setLocationInput] = useState('');
+  const [friendsDropdownVisible, setFriendsDropdownVisible] = useState(false); // Toggle for dropdown visibility
+  const [selectedFriends, setSelectedFriends] = useState([]); // Store multiple selected friends
+
+  const friendsList = [
+    { id: 1, name: 'John Doe', imageUri: '../../assets/images/boca2.png' },
+    { id: 2, name: 'Jane Smith', imageUri: '../../assets/images/boca2.png' },
+    { id: 3, name: 'Emily Brown', imageUri: '../../assets/images/boca2.png' },
+    { id: 4, name: 'Shay Gabai', imageUri: '../../assets/images/boca2.png' },
+    { id: 5, name: 'Nico Shliko', imageUri: '../../assets/images/boca2.png' },
+    { id: 6, name: 'Gertzel', imageUri: '../../assets/images/boca2.png' },
+  ];
 
   const handleShowModal = () => {
     setModalVisible(true);
@@ -53,6 +64,20 @@ const PlaydatesTab = () => {
     setSelectedTime(selectedTime || new Date());
   };
 
+  const toggleFriendsDropdown = () => {
+    setFriendsDropdownVisible(!friendsDropdownVisible);
+  };
+
+  const toggleFriendSelection = (friend) => {
+    setSelectedFriends((prevSelected) => {
+      if (prevSelected.some((f) => f.id === friend.id)) {
+        return prevSelected.filter((f) => f.id !== friend.id); // Remove friend if already selected
+      } else {
+        return [...prevSelected, friend]; // Add friend if not already selected
+      }
+    });
+  };
+
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -66,7 +91,6 @@ const PlaydatesTab = () => {
           <Text style={styles.headerDateText}>{getCurrentMonthAndYear()}</Text>
         </View>
       </View>
-      
 
       {/* Date Picker */}
       <View style={styles.datePickerContainer}>
@@ -145,6 +169,39 @@ const PlaydatesTab = () => {
                   onChangeText={setLocationInput}
                 />
               </View>
+            </View>
+
+             {/* Friends Dropdown */}
+             <View style={styles.inputContainerFullWidth}>
+              <Text style={styles.label}>Invite Friends</Text>
+              <TouchableOpacity style={styles.inputWrapperFullWidth} onPress={toggleFriendsDropdown}>
+               <MaterialIcons name="person" size={16} color="#A9A9A9" />
+                 <Text style={[styles.inputFullWidth, { color: selectedFriends.length > 0 ? '#2C3E50' : '#A9A9A9' }]}>
+                   {selectedFriends.length > 0 ? selectedFriends.map(f => f.name).join(', ') : 'Select friends'}
+                 </Text>
+               <MaterialIcons name={friendsDropdownVisible ? "expand-less" : "expand-more"} size={16} color="#A9A9A9" />
+              </TouchableOpacity>
+              {friendsDropdownVisible && (
+                <View style={styles.scrollableListContainer}>
+                  <FlatList
+                    data={friendsList}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={({ item }) => {
+                      const isSelected = selectedFriends.some((f) => f.id === item.id);
+                      return (
+                        <TouchableOpacity
+                          style={styles.friendItem}
+                          onPress={() => toggleFriendSelection(item)}
+                        >
+                          <Image source={require('../../assets/images/boca2.png')} style={styles.friendImage} />
+                          <Text style={styles.friendName}>{item.name}</Text>
+                          {isSelected && <View style={styles.greenDot} />}
+                        </TouchableOpacity>
+                      );
+                    }}
+                  />
+                </View>
+              )}
             </View>
 
             {/* Action Buttons */}
@@ -280,9 +337,9 @@ const styles = StyleSheet.create({
   // New Meeting Button Styles
   newMeetingButton: {
     position: 'absolute',
-    bottom: 125, // Adjust to be above the bottom bar
-    right: 20,  // Position to the right side of the screen
-    backgroundColor: '#2C3E50', // Blueish background color
+    bottom: 125,
+    right: 20,
+    backgroundColor: '#2C3E50',
     width: 60,
     height: 60,
     borderRadius: 20,
@@ -354,10 +411,6 @@ const styles = StyleSheet.create({
     color: '#2C3E50',
     marginLeft: 10,
   },
-  dateTimePicker: {
-    flex: 1,
-    marginLeft: 5,
-  },
   buttonRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -381,5 +434,35 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontSize: 16,
+  },
+  // Scrollable list styles
+  scrollableListContainer: {
+    maxHeight: 150, // Limit the height of the list
+    overflow: 'hidden',
+  },
+  friendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#EAEAEA',
+  },
+  friendImage: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    marginRight: 10,
+  },
+  friendName: {
+    fontSize: 16,
+    color: 'white',
+    flex: 1,
+  },
+  greenDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 6,
+    backgroundColor: '#27AE60',
+    marginLeft: 'auto',
   },
 });
