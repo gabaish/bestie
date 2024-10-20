@@ -2,13 +2,14 @@ import React from 'react';
 import { View, Text, TextInput, ScrollView, FlatList, Image, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { images } from '../../constants';
+import { useRouter } from 'expo-router';
 
 const friends = [
     { id: '1', name: 'Boca', image: 'https://example.com/dog1.jpg' },
-    { id: '2', name: 'Boca', image: 'https://example.com/dog2.jpg' },
-    { id: '3', name: 'Boca', image: 'https://example.com/dog3.jpg' },
-    { id: '4', name: 'Boca', image: 'https://example.com/dog3.jpg' },
-    { id: '5', name: 'Boca', image: 'https://example.com/dog3.jpg' }
+    { id: '2', name: 'Scrapy', image: 'https://example.com/dog2.jpg' },
+    { id: '3', name: 'Zoey', image: 'https://example.com/dog3.jpg' },
+    { id: '4', name: 'Fey', image: 'https://example.com/dog3.jpg' },
+    { id: '5', name: 'Val', image: 'https://example.com/dog3.jpg' }
 ];
 
 const favoriteFriends = [
@@ -20,6 +21,7 @@ const favoriteFriends = [
 ];
 
 const FriendsTab = () => {
+    const router = useRouter();
     return (
       
         <SafeAreaView style={styles.container}>
@@ -56,7 +58,9 @@ const FriendsTab = () => {
                 data={friends}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={()=> router.push(
+                    {pathname:`/friend/${item.id}`,
+                    params: { name: item.name}})}>
                     <View style={styles.friendItem}>
                         <Image source={{ uri: item.image }} style={styles.friendImage} />
                         <Text style={styles.friendName}>{item.name}</Text>

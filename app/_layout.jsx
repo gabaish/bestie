@@ -8,6 +8,7 @@ export default function Layout() {
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="settings" options={{ headerShown: false }} />
       <Stack.Screen name="conversation/[id]" options={{ headerShown: false }} />
+      <Stack.Screen name="friend/[friendProfile]" options={{ headerShown: false }} />
     </Stack>
   );
 }
