@@ -33,25 +33,6 @@ const ProfileScreen = () => {
     const handleCloseModal = () => {
         setModalVisible(false);
     };
-
-    const pickImage = async () => {
-        const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (!permissionResult.granted) {
-          alert("Permission to access camera roll is required!");
-          return;
-        }
-    
-        const result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.Images,
-          allowsEditing: true,
-          aspect: [1, 1],
-          quality: 1,
-        });
-    
-        if (!result.canceled && result.assets && result.assets.length > 0) {
-          setDogPhoto(result.assets[0].uri); // Update dogPhoto with selected image URI
-        }
-      };
     
     const renderDogInfo = () => (
         <View style={styles.dogInfoContainer}>
