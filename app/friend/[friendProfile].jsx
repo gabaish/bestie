@@ -158,9 +158,6 @@ const ProfileScreen = () => {
                 <View style={styles.modalContainer}>
                     <View style={styles.modalContent}>
                          <Image source={dogPhoto ? { uri: dogPhoto } : avatarImage} style={styles.largeAvatar} />
-                    <TouchableOpacity style={styles.modalButton} onPress={pickImage}>
-                            <Text style={styles.modalButtonText}>Change Image</Text>
-                        </TouchableOpacity>
                         <TouchableOpacity style={styles.modalCloseButton} onPress={handleCloseModal}>
                             <Text style={styles.modalButtonText}>Close</Text>
                         </TouchableOpacity>
