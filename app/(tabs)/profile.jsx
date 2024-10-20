@@ -302,6 +302,7 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         width: '70%',
     },
+    
     sliderView: {
         backgroundColor:'#F7F7F7',
         borderRadius: 25,

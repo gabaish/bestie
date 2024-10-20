@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Dimensions, Image } from 'react-native';
 import MapView, { Marker, Circle } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { MaterialIcons } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
+import { icons } from '../../constants';
+
+const { width, height } = Dimensions.get('window');
 
 export default function MapComponent() {
   const [location, setLocation] = useState(null);
@@ -13,6 +16,14 @@ export default function MapComponent() {
   const [radius, setRadius] = useState(500);
   const [activityStatus, setActivityStatus] = useState("Public");
   const [showStatusOptions, setShowStatusOptions] = useState(false);
+  const [sizeDropdownVisible, setSizeDropdownVisible] = useState(false);
+  const [selectedSize, setSelectedSize] = useState('');
+  const [ageDropdownVisible, setAgeDropdownVisible] = useState(false);
+  const [selectedAge, setSelectedAge] = useState('');
+  const [genderDropdownVisible, setGenderDropdownVisible] = useState(false);
+  const [selectedGender, setSelectedGender] = useState('');
+  const [energyDropdownVisible, setEnergyDropdownVisible] = useState(false);
+  const [selectedEnergy, setSelectedEnergy] = useState(50);
 
   useEffect(() => {
     (async () => {
@@ -34,7 +45,28 @@ export default function MapComponent() {
 
   const toggleFilters = () => {
     setShowFilters((prev) => !prev);
+    setSizeDropdownVisible(false);
+    setAgeDropdownVisible(false);
   };
+
+  const hideOtherFilters = (currentFilter) =>{
+    if(currentFilter!="size")
+      setSizeDropdownVisible(false);
+    else
+      setSizeDropdownVisible(!sizeDropdownVisible);
+    if(currentFilter!="age")
+      setAgeDropdownVisible(false);
+    else
+      setAgeDropdownVisible(!ageDropdownVisible);
+    if(currentFilter!="gender")
+      setGenderDropdownVisible(false);
+    else
+      setGenderDropdownVisible(!genderDropdownVisible);
+    if(currentFilter!="energy")
+      setEnergyDropdownVisible(false);
+    else
+      setEnergyDropdownVisible(!energyDropdownVisible);
+  }
 
   const handlePress = (status) => {
     setActivityStatus(status);
@@ -80,23 +112,100 @@ export default function MapComponent() {
         {/* Conditionally Render Filter Buttons */}
         {showFilters && (
           <View style={styles.filterButtonsContainer}>
-            <TouchableOpacity style={styles.filterButton}>
+            <TouchableOpacity style={styles.filterButton} onPress={()=> hideOtherFilters("size")}>
               <Text style={styles.filterButtonText}>Size</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.filterButton}>
+            <TouchableOpacity style={styles.filterButton} onPress={()=> hideOtherFilters("age")}>
               <Text style={styles.filterButtonText}>Age</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.filterButton}>
+            <TouchableOpacity style={styles.filterButton} onPress={()=> hideOtherFilters("gender")}>
               <Text style={styles.filterButtonText}>Gender</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.filterButton}>
+            <TouchableOpacity style={styles.filterButton}  onPress={()=> hideOtherFilters("energy")}>
               <Text style={styles.filterButtonText}>Energy Level</Text>
             </TouchableOpacity>
           </View>
-        )}
+        )   
+        }
+        {
+            sizeDropdownVisible &&
+            <View style={[styles.dropdownContainer, styles.modalDropdown, {top:'22%'}]}>
+              <TouchableOpacity  onPress={() => { setSelectedSize('Small'); setSizeDropdownVisible(false); }}>
+                <View >
+                  <Image source={icons.dogSizeSmall} resizeMode="contain" style={{ width: 40, height: 40, paddingVertical:50, tintColor:selectedSize==="Small"?'#056FA0':'#CDCDCD' }} />
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity  onPress={() => { setSelectedSize('Medium'); setSizeDropdownVisible(false); }}>
+                <View >
+                  <Image source={icons.dogSizeMedium} resizeMode="contain" style={{ width: 60, height: 60, paddingVertical:50, tintColor: selectedSize==="Medium"?'#056FA0':'#CDCDCD' }} />
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity  onPress={() => { setSelectedSize('Big'); setSizeDropdownVisible(false); }}>
+                <View >
+                  <Image source={icons.dogSizeBig} resizeMode="contain" style={{ width: 80, height: 80, paddingVertical:50, tintColor:selectedSize==="Big"?'#056FA0':'#CDCDCD' }} />
+                </View>
+              </TouchableOpacity>
+            </View>
+        }
+
+        {
+          ageDropdownVisible &&
+          <View style={[styles.dropdownContainer, styles.modalDropdown, {top:'22%'}]}>
+            <TouchableOpacity  onPress={() => { setSelectedAge('0-1'); setAgeDropdownVisible(false); }}>
+              <View style= {styles.ageOptionContainer} >
+                <Text style={[styles.ageOptionText,{ color:selectedAge==="0-1"?'#056FA0':'#CDCDCD'}]} > 0-1 </Text>
+                <Text style= {[styles.ageOptionYearsText, { color:selectedAge==="0-1"?'#056FA0':'#CDCDCD'}]}> Years</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity  onPress={() => { setSelectedAge('1-3'); setAgeDropdownVisible(false); }}>
+              <View style= {styles.ageOptionContainer} >
+                <Text style={[styles.ageOptionText,{ color:selectedAge==="1-3"?'#056FA0':'#CDCDCD'}]} > 1-3 </Text>
+                <Text style= {[styles.ageOptionYearsText, { color:selectedAge==="1-3"?'#056FA0':'#CDCDCD'}]}> Years</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity  onPress={() => { setSelectedAge('3+'); setAgeDropdownVisible(false); }}>
+              <View style= {styles.ageOptionContainer} >
+                <Text style={[styles.ageOptionText,{ color:selectedAge==="3+"?'#056FA0':'#CDCDCD'}]} > 3+ </Text>
+                <Text style= {[styles.ageOptionYearsText, { color:selectedAge==="3+"?'#056FA0':'#CDCDCD'}]}> Years</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        }
+
+        {
+          genderDropdownVisible && 
+          <View style={[styles.dropdownContainer, styles.modalDropdown, {top:'22%'}]}>
+            <TouchableOpacity style={styles.genderOption} onPress={() => { setSelectedGender('Female'); setGenderDropdownVisible(false); }}>
+              <Text style={[styles.genderIcon, { color: '#FF69B4' }]}>♀️</Text>
+              <Text style={styles.genderLabel}>Female</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.genderOption} onPress={() => { setSelectedGender('Male'); setGenderDropdownVisible(false); }}>
+              <Text style={[styles.genderIcon, { color: '#00BFFF' }]}>♂️</Text>
+              <Text style={styles.genderLabel}>Male</Text>
+            </TouchableOpacity>
+          </View>
+        }
+
+        {
+          energyDropdownVisible && 
+          <View style={[styles.dropdownContainer, styles.modalDropdown, styles.sliderView, {top:'22%'}]}>
+            <Slider
+              style={styles.slider}
+              minimumValue={0}
+              maximumValue={100}
+              value={selectedEnergy}
+              onValueChange={(value) => setSelectedEnergy(value)}
+              minimumTrackTintColor="white"  
+              maximumTrackTintColor="#CDCDCD"  
+              thumbTintColor="#CDCDCD"                       
+            />
+          </View>
+        }
 
         {!showStatusOptions && 
           <View
@@ -246,6 +355,52 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  dropdownContainer: {
+    position: 'absolute',
+    backgroundColor: '#2C3E50',
+    alignSelf: 'center',
+    borderRadius: 20,
+    width:'75%',
+    zIndex: 10, // Higher than overlay
+  },
+  modalDropdown: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'flex-end'
+  },
+  ageOptionContainer:{
+    alignItems:'center',
+    padding:12
+  },
+  ageOptionText:{
+    fontSize:30,
+    fontWeight:'bold',
+    marginBottom:5
+  },
+  ageOptionYearsText:{
+    fontSize:14
+  },
+  genderOption: {
+    alignItems: 'center',
+    padding: 15,
+  },
+  genderIcon: {
+    fontSize: 36,
+    marginBottom: 5,
+  },
+  genderLabel: {
+    fontSize: 14,
+    color: '#CDCDCD',
+  },
+  sliderView:{
+    paddingHorizontal:15
+  },
+  slider: {
+        alignSelf:'center',
+        width: '100%',
+        marginHorizontal: 20,
+        marginVertical: 10,
   },
   statusButtonContainer: {
     position: 'absolute',
