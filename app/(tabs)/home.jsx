@@ -17,9 +17,9 @@ export default function MapComponent() {
   const [activityStatus, setActivityStatus] = useState("Public");
   const [showStatusOptions, setShowStatusOptions] = useState(false);
   const [sizeDropdownVisible, setSizeDropdownVisible] = useState(false);
-  const [selectedSize, setSelectedSize] = useState('');
+  const [selectedSize, setSelectedSize] = useState([]);
   const [ageDropdownVisible, setAgeDropdownVisible] = useState(false);
-  const [selectedAge, setSelectedAge] = useState('');
+  const [selectedAge, setSelectedAge] = useState([]);
   const [genderDropdownVisible, setGenderDropdownVisible] = useState(false);
   const [selectedGender, setSelectedGender] = useState('');
   const [energyDropdownVisible, setEnergyDropdownVisible] = useState(false);
@@ -47,6 +47,8 @@ export default function MapComponent() {
     setShowFilters((prev) => !prev);
     setSizeDropdownVisible(false);
     setAgeDropdownVisible(false);
+    setGenderDropdownVisible(false);
+    setEnergyDropdownVisible(false);
   };
 
   const hideOtherFilters = (currentFilter) =>{
@@ -67,6 +69,26 @@ export default function MapComponent() {
     else
       setEnergyDropdownVisible(!energyDropdownVisible);
   }
+
+  const toggleSize = (size)=> {
+    if(selectedSize.includes(size))
+      setSelectedSize(selectedSize.filter(s => s!==size));
+    else
+      setSelectedSize([...selectedSize,size]);
+    
+  }
+
+  const isSelectedSize = (size) => { return selectedSize.includes(size)};
+
+  const toggleAge = (age)=> {
+    if(selectedAge.includes(age))
+      setSelectedAge(selectedAge.filter(a => a!==age));
+    else
+      setSelectedAge([...selectedAge,age]);
+    
+  }
+
+  const isSelectedAge = (age) => { return selectedAge.includes(age)};
 
   const handlePress = (status) => {
     setActivityStatus(status);
@@ -104,28 +126,37 @@ export default function MapComponent() {
         <View style={styles.topBar}>
           <Text style={styles.filterText}>Filters</Text>
 
-          <TouchableOpacity style={styles.menuButton} onPress={toggleFilters}>
+          {
+            showFilters?
+            <TouchableOpacity style={styles.menuButton} onPress={toggleFilters}>
+            <MaterialIcons name="close" size={24} color="white" />
+            </TouchableOpacity>
+            :
+            <TouchableOpacity style={styles.menuButton} onPress={toggleFilters}>
             <MaterialIcons name="menu" size={24} color="white" />
-          </TouchableOpacity>
+            </TouchableOpacity>
+          }
+
+          
         </View>
 
         {/* Conditionally Render Filter Buttons */}
         {showFilters && (
           <View style={styles.filterButtonsContainer}>
-            <TouchableOpacity style={styles.filterButton} onPress={()=> hideOtherFilters("size")}>
-              <Text style={styles.filterButtonText}>Size</Text>
+            <TouchableOpacity style={[styles.filterButton, {backgroundColor: sizeDropdownVisible?'#CDCDCD':'#2C3E50'}]} onPress={()=> hideOtherFilters("size")}>
+              <Text style={[styles.filterButtonText, {backgroundColor: sizeDropdownVisible?'#CDCDCD':'#2C3E50'}, {color:sizeDropdownVisible?'#2C3E50':'white'}]}>Size</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.filterButton} onPress={()=> hideOtherFilters("age")}>
-              <Text style={styles.filterButtonText}>Age</Text>
+            <TouchableOpacity style={[styles.filterButton,{backgroundColor: ageDropdownVisible?'#CDCDCD':'#2C3E50'}]} onPress={()=> hideOtherFilters("age")}>
+              <Text style={[styles.filterButtonText,{backgroundColor: ageDropdownVisible?'#CDCDCD':'#2C3E50'}, {color:ageDropdownVisible?'#2C3E50':'white'}]}>Age</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.filterButton} onPress={()=> hideOtherFilters("gender")}>
-              <Text style={styles.filterButtonText}>Gender</Text>
+            <TouchableOpacity style={[styles.filterButton,{backgroundColor: genderDropdownVisible?'#CDCDCD':'#2C3E50'}]} onPress={()=> hideOtherFilters("gender")}>
+              <Text style={[styles.filterButtonText,{backgroundColor: genderDropdownVisible?'#CDCDCD':'#2C3E50'}, {color:genderDropdownVisible?'#2C3E50':'white'}]}>Gender</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.filterButton}  onPress={()=> hideOtherFilters("energy")}>
-              <Text style={styles.filterButtonText}>Energy Level</Text>
+            <TouchableOpacity style={[styles.filterButton,{backgroundColor: energyDropdownVisible?'#CDCDCD':'#2C3E50'}]}  onPress={()=> hideOtherFilters("energy")}>
+              <Text style={[styles.filterButtonText,{backgroundColor: energyDropdownVisible?'#CDCDCD':'#2C3E50'}, {color:energyDropdownVisible?'#2C3E50':'white'}]}>Energy Level</Text>
             </TouchableOpacity>
           </View>
         )   
@@ -133,19 +164,19 @@ export default function MapComponent() {
         {
             sizeDropdownVisible &&
             <View style={[styles.dropdownContainer, styles.modalDropdown, {top:'22%'}]}>
-              <TouchableOpacity  onPress={() => { setSelectedSize('Small'); setSizeDropdownVisible(false); }}>
+              <TouchableOpacity  onPress={() => { toggleSize('Small'); setSizeDropdownVisible(false); }}>
                 <View >
-                  <Image source={icons.dogSizeSmall} resizeMode="contain" style={{ width: 40, height: 40, paddingVertical:50, tintColor:selectedSize==="Small"?'#056FA0':'#CDCDCD' }} />
+                  <Image source={icons.dogSizeSmall} resizeMode="contain" style={{ width: 40, height: 40, paddingVertical:50, tintColor: isSelectedSize('Small')?'#056FA0':'#CDCDCD' }} />
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity  onPress={() => { setSelectedSize('Medium'); setSizeDropdownVisible(false); }}>
+              <TouchableOpacity  onPress={() => { toggleSize('Medium'); setSizeDropdownVisible(false); }}>
                 <View >
-                  <Image source={icons.dogSizeMedium} resizeMode="contain" style={{ width: 60, height: 60, paddingVertical:50, tintColor: selectedSize==="Medium"?'#056FA0':'#CDCDCD' }} />
+                  <Image source={icons.dogSizeMedium} resizeMode="contain" style={{ width: 60, height: 60, paddingVertical:50, tintColor: isSelectedSize('Medium')?'#056FA0':'#CDCDCD' }} />
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity  onPress={() => { setSelectedSize('Big'); setSizeDropdownVisible(false); }}>
+              <TouchableOpacity  onPress={() => { toggleSize('Big'); setSizeDropdownVisible(false); }}>
                 <View >
-                  <Image source={icons.dogSizeBig} resizeMode="contain" style={{ width: 80, height: 80, paddingVertical:50, tintColor:selectedSize==="Big"?'#056FA0':'#CDCDCD' }} />
+                  <Image source={icons.dogSizeBig} resizeMode="contain" style={{ width: 80, height: 80, paddingVertical:50, tintColor: isSelectedSize('Big')?'#056FA0':'#CDCDCD' }} />
                 </View>
               </TouchableOpacity>
             </View>
@@ -154,24 +185,24 @@ export default function MapComponent() {
         {
           ageDropdownVisible &&
           <View style={[styles.dropdownContainer, styles.modalDropdown, {top:'22%'}]}>
-            <TouchableOpacity  onPress={() => { setSelectedAge('0-1'); setAgeDropdownVisible(false); }}>
+            <TouchableOpacity  onPress={() => { toggleAge('0-1'); setAgeDropdownVisible(false); }}>
               <View style= {styles.ageOptionContainer} >
-                <Text style={[styles.ageOptionText,{ color:selectedAge==="0-1"?'#056FA0':'#CDCDCD'}]} > 0-1 </Text>
-                <Text style= {[styles.ageOptionYearsText, { color:selectedAge==="0-1"?'#056FA0':'#CDCDCD'}]}> Years</Text>
+                <Text style={[styles.ageOptionText,{ color:isSelectedAge("0-1")?'#056FA0':'#CDCDCD'}]} > 0-1 </Text>
+                <Text style= {[styles.ageOptionYearsText, { color:isSelectedAge("0-1")?'#056FA0':'#CDCDCD'}]}> Years</Text>
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity  onPress={() => { setSelectedAge('1-3'); setAgeDropdownVisible(false); }}>
+            <TouchableOpacity  onPress={() => { toggleAge('1-3'); setAgeDropdownVisible(false); }}>
               <View style= {styles.ageOptionContainer} >
-                <Text style={[styles.ageOptionText,{ color:selectedAge==="1-3"?'#056FA0':'#CDCDCD'}]} > 1-3 </Text>
-                <Text style= {[styles.ageOptionYearsText, { color:selectedAge==="1-3"?'#056FA0':'#CDCDCD'}]}> Years</Text>
+                <Text style={[styles.ageOptionText,{ color:isSelectedAge("1-3")?'#056FA0':'#CDCDCD'}]} > 1-3 </Text>
+                <Text style= {[styles.ageOptionYearsText, { color:isSelectedAge("1-3")?'#056FA0':'#CDCDCD'}]}> Years</Text>
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity  onPress={() => { setSelectedAge('3+'); setAgeDropdownVisible(false); }}>
+            <TouchableOpacity  onPress={() => { toggleAge('3+'); setAgeDropdownVisible(false); }}>
               <View style= {styles.ageOptionContainer} >
-                <Text style={[styles.ageOptionText,{ color:selectedAge==="3+"?'#056FA0':'#CDCDCD'}]} > 3+ </Text>
-                <Text style= {[styles.ageOptionYearsText, { color:selectedAge==="3+"?'#056FA0':'#CDCDCD'}]}> Years</Text>
+                <Text style={[styles.ageOptionText,{ color:isSelectedAge("3+")?'#056FA0':'#CDCDCD'}]} > 3+ </Text>
+                <Text style= {[styles.ageOptionYearsText, { color:isSelectedAge("3+")?'#056FA0':'#CDCDCD'}]}> Years</Text>
               </View>
             </TouchableOpacity>
           </View>
