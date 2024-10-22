@@ -126,6 +126,7 @@ export default function MapComponent() {
     setSizeDropdownVisible(false);
     setGenderDropdownVisible(false);
     setEnergyDropdownVisible(false);
+    setShowStatusOptions(false);
   };
 
   if (!location) {
