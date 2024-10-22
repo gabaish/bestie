@@ -85,6 +85,17 @@ export default function MapComponent() {
       setSelectedAge(selectedAge.filter(a => a!==age));
     else
       setSelectedAge([...selectedAge,age]);
+  }
+
+  const toggleGender = (gender) => {
+    if(selectedGender==gender)
+      setSelectedGender('');
+    else{
+      if(gender == 'Female')
+        setSelectedGender('Female');
+      else
+        setSelectedGender('Male');
+    }
     
   }
 
@@ -109,10 +120,12 @@ export default function MapComponent() {
     setShowRadiusSlider((prev) => !prev);
   };
 
-  const handleOutsidePress = () => {
-    if (showRadiusSlider) {
-      setShowRadiusSlider(false);
-    }
+  const handleOutsidePress = () => { 
+    setShowRadiusSlider(false);
+    setAgeDropdownVisible(false);
+    setSizeDropdownVisible(false);
+    setGenderDropdownVisible(false);
+    setEnergyDropdownVisible(false);
   };
 
   if (!location) {
@@ -143,16 +156,16 @@ export default function MapComponent() {
         {/* Conditionally Render Filter Buttons */}
         {showFilters && (
           <View style={styles.filterButtonsContainer}>
-            <TouchableOpacity style={[styles.filterButton, {backgroundColor: sizeDropdownVisible?'#CDCDCD':'#2C3E50'}]} onPress={()=> hideOtherFilters("size")}>
-              <Text style={[styles.filterButtonText, {backgroundColor: sizeDropdownVisible?'#CDCDCD':'#2C3E50'}, {color:sizeDropdownVisible?'#2C3E50':'white'}]}>Size</Text>
+            <TouchableOpacity style={[styles.filterButton, {backgroundColor: selectedSize.length!=0?'#CDCDCD':'#2C3E50'}]} onPress={()=> hideOtherFilters("size")}>
+              <Text style={[styles.filterButtonText, {backgroundColor: selectedSize.length!=0?'#CDCDCD':'#2C3E50'}, {color:selectedSize.length!=0?'#2C3E50':'white'}]}>Size</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.filterButton,{backgroundColor: ageDropdownVisible?'#CDCDCD':'#2C3E50'}]} onPress={()=> hideOtherFilters("age")}>
-              <Text style={[styles.filterButtonText,{backgroundColor: ageDropdownVisible?'#CDCDCD':'#2C3E50'}, {color:ageDropdownVisible?'#2C3E50':'white'}]}>Age</Text>
+            <TouchableOpacity style={[styles.filterButton,{backgroundColor: selectedAge.length!=0?'#CDCDCD':'#2C3E50'}]} onPress={()=> hideOtherFilters("age")}>
+              <Text style={[styles.filterButtonText,{backgroundColor: selectedAge.length!=0?'#CDCDCD':'#2C3E50'}, {color:selectedAge.length!=0?'#2C3E50':'white'}]}>Age</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.filterButton,{backgroundColor: genderDropdownVisible?'#CDCDCD':'#2C3E50'}]} onPress={()=> hideOtherFilters("gender")}>
-              <Text style={[styles.filterButtonText,{backgroundColor: genderDropdownVisible?'#CDCDCD':'#2C3E50'}, {color:genderDropdownVisible?'#2C3E50':'white'}]}>Gender</Text>
+            <TouchableOpacity style={[styles.filterButton,{backgroundColor: selectedGender!=''?'#CDCDCD':'#2C3E50'}]} onPress={()=> hideOtherFilters("gender")}>
+              <Text style={[styles.filterButtonText,{backgroundColor: selectedGender!=''?'#CDCDCD':'#2C3E50'}, {color:selectedGender!=''?'#2C3E50':'white'}]}>Gender</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.filterButton,{backgroundColor: energyDropdownVisible?'#CDCDCD':'#2C3E50'}]}  onPress={()=> hideOtherFilters("energy")}>
@@ -164,17 +177,17 @@ export default function MapComponent() {
         {
             sizeDropdownVisible &&
             <View style={[styles.dropdownContainer, styles.modalDropdown, {top:'22%'}]}>
-              <TouchableOpacity  onPress={() => { toggleSize('Small'); setSizeDropdownVisible(false); }}>
+              <TouchableOpacity  onPress={() => { toggleSize('Small'); }}>
                 <View >
                   <Image source={icons.dogSizeSmall} resizeMode="contain" style={{ width: 40, height: 40, paddingVertical:50, tintColor: isSelectedSize('Small')?'#056FA0':'#CDCDCD' }} />
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity  onPress={() => { toggleSize('Medium'); setSizeDropdownVisible(false); }}>
+              <TouchableOpacity  onPress={() => { toggleSize('Medium'); }}>
                 <View >
                   <Image source={icons.dogSizeMedium} resizeMode="contain" style={{ width: 60, height: 60, paddingVertical:50, tintColor: isSelectedSize('Medium')?'#056FA0':'#CDCDCD' }} />
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity  onPress={() => { toggleSize('Big'); setSizeDropdownVisible(false); }}>
+              <TouchableOpacity  onPress={() => { toggleSize('Big');}}>
                 <View >
                   <Image source={icons.dogSizeBig} resizeMode="contain" style={{ width: 80, height: 80, paddingVertical:50, tintColor: isSelectedSize('Big')?'#056FA0':'#CDCDCD' }} />
                 </View>
@@ -185,21 +198,21 @@ export default function MapComponent() {
         {
           ageDropdownVisible &&
           <View style={[styles.dropdownContainer, styles.modalDropdown, {top:'22%'}]}>
-            <TouchableOpacity  onPress={() => { toggleAge('0-1'); setAgeDropdownVisible(false); }}>
+            <TouchableOpacity  onPress={() => { toggleAge('0-1'); }}>
               <View style= {styles.ageOptionContainer} >
                 <Text style={[styles.ageOptionText,{ color:isSelectedAge("0-1")?'#056FA0':'#CDCDCD'}]} > 0-1 </Text>
                 <Text style= {[styles.ageOptionYearsText, { color:isSelectedAge("0-1")?'#056FA0':'#CDCDCD'}]}> Years</Text>
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity  onPress={() => { toggleAge('1-3'); setAgeDropdownVisible(false); }}>
+            <TouchableOpacity  onPress={() => { toggleAge('1-3'); }}>
               <View style= {styles.ageOptionContainer} >
                 <Text style={[styles.ageOptionText,{ color:isSelectedAge("1-3")?'#056FA0':'#CDCDCD'}]} > 1-3 </Text>
                 <Text style= {[styles.ageOptionYearsText, { color:isSelectedAge("1-3")?'#056FA0':'#CDCDCD'}]}> Years</Text>
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity  onPress={() => { toggleAge('3+'); setAgeDropdownVisible(false); }}>
+            <TouchableOpacity  onPress={() => { toggleAge('3+');  }}>
               <View style= {styles.ageOptionContainer} >
                 <Text style={[styles.ageOptionText,{ color:isSelectedAge("3+")?'#056FA0':'#CDCDCD'}]} > 3+ </Text>
                 <Text style= {[styles.ageOptionYearsText, { color:isSelectedAge("3+")?'#056FA0':'#CDCDCD'}]}> Years</Text>
@@ -211,12 +224,12 @@ export default function MapComponent() {
         {
           genderDropdownVisible && 
           <View style={[styles.dropdownContainer, styles.modalDropdown, {top:'22%'}]}>
-            <TouchableOpacity style={styles.genderOption} onPress={() => { setSelectedGender('Female'); setGenderDropdownVisible(false); }}>
-              <Text style={[styles.genderIcon, { color: '#FF69B4' }]}>♀️</Text>
+            <TouchableOpacity style={styles.genderOption} onPress={() => { toggleGender('Female'); }}>
+              <Text style={[styles.genderIcon, { color: selectedGender=='Female'? '#FF69B4': 'white' }]}>♀️</Text>
               <Text style={styles.genderLabel}>Female</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.genderOption} onPress={() => { setSelectedGender('Male'); setGenderDropdownVisible(false); }}>
-              <Text style={[styles.genderIcon, { color: '#00BFFF' }]}>♂️</Text>
+            <TouchableOpacity style={styles.genderOption} onPress={() => { toggleGender('Male'); }}>
+              <Text style={[styles.genderIcon, { color: selectedGender=='Male'?'#00BFFF':'white' }]}>♂️</Text>
               <Text style={styles.genderLabel}>Male</Text>
             </TouchableOpacity>
           </View>
@@ -442,10 +455,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   statusButtonWithoutFilters: {
-    top: '17%',
+    top: '16.5%',
   },
   statusButtonWithFilters: {
-    top: '23%',
+    top: '21.5%',
   },
   statusButton: {
     paddingVertical: 5,
