@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList, Dimensions,SafeAreaView } from 'react-native';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const LandingScreen = ({ navigation }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -83,46 +83,43 @@ const styles = StyleSheet.create({
     backgroundColor: '#213E53',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
   },
   logo: {
     width: 75,
     height: 75,
-    marginBottom: 20,
-    marginTop: 100,
+    marginBottom: '5%',
+    marginTop: '25%',
   },
   mainText: {
     fontSize: 32,
-    color: '#FFFFFF',
+    color: 'white',
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: '2.5%',
   },
   subText: {
     fontSize: 16,
-    color: '#FFFFFF',
+    color: 'white',
     textAlign: 'center',
-    marginBottom: 50,
+    marginBottom: '12.5%',
   },
   carousel: {
-    marginBottom: 20,
+    marginBottom: '5%',
+    
   },
   carouselItem: {
-    width: width * 0.77, // Make sure items are 80% of screen width
-    height: 200,
+    width: width * 0.77,
     borderRadius: 10,
-    marginHorizontal: 7,
+    marginHorizontal: '1%',
   },
   pagination: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 200,
+    marginBottom: '51%',
   },
   dot: {
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'white',
     marginHorizontal: 4,
   },
   startButton: {
@@ -130,13 +127,14 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 25,
     position: 'absolute',
-    bottom: 50,
-    width: width * 0.8,
+    bottom: '10%',
+    width: '80%',
     alignItems: 'center',
+    
   },
   startButtonText: {
     fontSize: 20,
-    color: '#FFFFFF',
+    color: 'white',
     fontWeight: 'bold',
   },
 });

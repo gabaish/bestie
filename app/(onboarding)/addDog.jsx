@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, Dimensions, Alert,SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, Dimensions, Alert,SafeAreaView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView , Platform} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 const { width } = Dimensions.get('window');
@@ -40,12 +40,12 @@ const AddDogScreen = ({ navigation }) => {
     }
   };
 
-
- 
-  const isDisabled = !dogName || !dogPhoto; // Button is disabled if no name or photo is provided
+  const isDisabled = !dogName || !dogPhoto; 
 
   return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <SafeAreaView style={styles.container}>
+    
       {/* Main Title */}
       <Text style={styles.mainText}>Let’s meet your dog!</Text>
 
@@ -84,7 +84,9 @@ const AddDogScreen = ({ navigation }) => {
       >
         <Text style={styles.continueButtonText}>Continue</Text>
       </TouchableOpacity>
+    
     </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -94,21 +96,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#213E53',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
   },
   mainText: {
     fontSize: 32,
-    color: '#FFFFFF',
+    color: 'white',
     fontWeight: 'bold',
     marginBottom: 50,
-    
   },
   imageContainer: {
     width: 160,
     height: 160,
     borderRadius: 90,
     borderWidth: 2,
-    borderColor: '#FFFFFF',
+    borderColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 50,
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
   plusText: {
     fontSize: 40,
-    color: '#FFFFFF',
+    color: 'white',
   },
   addText: {
     fontSize: 16,
@@ -133,15 +133,15 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: 'white',
     marginBottom: 20,
   },
   input: {
-    width: width * 0.5,
+    width: '50%',
     height: 40,
     borderBottomWidth: 2,
     borderBottomColor: '#AAAAAA',
-    color: '#FFFFFF',
+    color: 'white',
     marginBottom: 50,
     textAlign: 'center',
     transition: 'fontSize 0.3s', // Add a smooth transition for the font size
@@ -149,13 +149,13 @@ const styles = StyleSheet.create({
   continueButton: {
     padding: 15,
     borderRadius: 25,
-    width: width * 0.8,
+    width: '80%',
     alignItems: 'center',
     bottom: -100,
   },
   continueButtonText: {
     fontSize: 20,
-    color: '#FFFFFF',
+    color: 'white',
     fontWeight: 'bold',
   },
 });

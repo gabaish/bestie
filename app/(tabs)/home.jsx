@@ -442,10 +442,10 @@ const styles = StyleSheet.create({
     paddingHorizontal:15
   },
   slider: {
-        alignSelf:'center',
-        width: '100%',
-        marginHorizontal: 20,
-        marginVertical: 10,
+    alignSelf:'center',
+    width: '100%',
+    marginHorizontal: 20,
+    marginVertical: 10,
   },
   statusButtonContainer: {
     position: 'absolute',

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, Dimensions, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, Dimensions, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
+
 
 const { width } = Dimensions.get('window');
 
@@ -55,7 +56,8 @@ const RegisterWithEmail = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <SafeAreaView style={styles.container} >
       <Text style={styles.mainText}>Create Your Bestie Account</Text>
       <Text style={styles.subText}>Let's set up your account with just a few quick details</Text>
 
@@ -115,6 +117,7 @@ const RegisterWithEmail = ({ navigation }) => {
       <Text style={styles.footerText}>By registering, you agree to our Terms of Service and Privacy Policy. You may receive updates and notifications related to your account.
       </Text>
     </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -124,27 +127,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#213E53',
-    justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
   },
   mainText: {
     fontSize: 32,
-    color: '#FFFFFF',
+    color: 'white',
     fontWeight: 'bold',
     marginBottom: 10,
     textAlign: 'center',
-    marginTop: 90,
+    marginTop: '23%',
   },
   subText: {
     fontSize: 16,
     color: '#D0D0D0',
     marginBottom: 30,
     textAlign: 'center',
-    width: width * 0.8,
+    width:'80%',
   },
   fieldContainer: {
-    width: width * 0.8,
+    width: '80%',
     marginBottom: 15,
   },
   label: {
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#27AE60',
     paddingVertical: 15,
     borderRadius: 25,
-    width: width * 0.8,
+    width: '80%',
     alignItems: 'center',
     marginTop: 60,
   },

@@ -178,7 +178,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#213E53',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
   },
   title: {
     fontSize: 32,
@@ -187,7 +186,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   section: {
-    width: width * 0.8,
+    width: '80%',
     marginBottom: 15,
   },
   disabledSection: {
@@ -218,17 +217,17 @@ const styles = StyleSheet.create({
     bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    zIndex: 1000,
+    zIndex: 1,
   },
   dropdownContainer: {
     position: 'absolute',
-    backgroundColor: '#FFF',
+    backgroundColor: 'white',
     alignSelf: 'center',
     borderRadius: 10,
     padding: 10,
-    width: width * 0.75,
-    maxHeight: height * 0.3,
-    zIndex: 1001, // Higher than overlay
+    width: width*0.7,
+    maxHeight: height*0.3,
+    zIndex: 2, 
   },
   breedOption: {
     padding: 10,
@@ -254,8 +253,8 @@ const styles = StyleSheet.create({
     color: '#2C3E50',
   },
   iconWithLabel: {
-  alignItems: 'center', // Center the items horizontally
-  justifyContent: 'flex-start', // Align the text and image vertically
+  alignItems: 'center', 
+  justifyContent: 'flex-start', 
   },
   sizeLabel: {
     marginTop: 5, // Add some space between the image and the text
@@ -278,7 +277,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4CAF50',
     padding: 15,
     borderRadius: 25,
-    width: width * 0.8,
+    width: '80%',
     alignItems: 'center',
     bottom: -100,
   },

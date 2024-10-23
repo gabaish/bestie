@@ -6,8 +6,8 @@ import home from '../assets/icons/home.png';
 import dogSizeBig from '../assets/icons/registration/dogSizeBig.png';
 import dogSizeMedium from '../assets/icons/registration/dogSizeMedium.png';
 import dogSizeSmall from '../assets/icons/registration/dogSizeSmall.png';
-
-
+import google from '../assets/icons/registration/google.png'
+import apple from '../assets/icons/registration/apple.png'
 
 
 export default{
@@ -18,5 +18,7 @@ export default{
     home,
     dogSizeBig,
     dogSizeMedium,
-    dogSizeSmall
+    dogSizeSmall,
+    google,
+    apple
 };
