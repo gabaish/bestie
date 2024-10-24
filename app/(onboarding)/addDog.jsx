@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, Dimensions, Alert,SafeAreaView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView , Platform} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { colors } from '../../constants/colors';
 
 const { width } = Dimensions.get('window');
 
@@ -78,7 +79,7 @@ const AddDogScreen = ({ navigation }) => {
       <TouchableOpacity
         style={[
           styles.continueButton,
-          { backgroundColor: isDisabled ? '#E2E2E2' : '#4CAF50' }, // Dynamic background color
+          { backgroundColor: isDisabled ? '#E2E2E2' : colors.onboardingButton }, // Dynamic background color
         ]}
         onPress={handleContinue}
       >
@@ -93,13 +94,13 @@ const AddDogScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#213E53',
+    backgroundColor: colors.onboardingBackground,
     justifyContent: 'center',
     alignItems: 'center',
   },
   mainText: {
     fontSize: 32,
-    color: 'white',
+    color: colors.onboardingMainText,
     fontWeight: 'bold',
     marginBottom: 50,
   },
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     height: 160,
     borderRadius: 90,
     borderWidth: 2,
-    borderColor: 'white',
+    borderColor: colors.onboardingMainText,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 50,
@@ -124,23 +125,23 @@ const styles = StyleSheet.create({
   },
   plusText: {
     fontSize: 40,
-    color: 'white',
+    color: colors.onboardingMainText,
   },
   addText: {
     fontSize: 16,
-    color: '#AAAAAA',
+    color: colors.onboardingSecondaryText,
   },
   label: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: 'white',
+    color: colors.onboardingMainText,
     marginBottom: 20,
   },
   input: {
     width: '50%',
     height: 40,
     borderBottomWidth: 2,
-    borderBottomColor: '#AAAAAA',
+    borderBottomColor: colors.onboardingSecondaryText,
     color: 'white',
     marginBottom: 50,
     textAlign: 'center',

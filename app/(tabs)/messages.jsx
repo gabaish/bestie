@@ -3,6 +3,7 @@ import { View, Text, TextInput, FlatList, TouchableOpacity, Image, StyleSheet, S
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
+import { colors } from '../../constants/colors';
 
 // Sample message data
 const messages = [
@@ -45,7 +46,7 @@ const MessagesTab = () => {
             <View style={styles.header}>
                 <View style={styles.headerTopRow}>
                     <Text style={styles.headerTitle}>Messages</Text>
-                    <MaterialIcons name="notifications-none" size={24} color="#2C3E50" />
+                    <MaterialIcons name="notifications-none" size={24} color={colors.tabsPrimary} />
                 </View>
 
                 {/* Search Bar */}
@@ -53,9 +54,9 @@ const MessagesTab = () => {
                     <TextInput
                         style={styles.searchBar}
                         placeholder="Search"
-                        placeholderTextColor="#A9A9A9"
+                        placeholderTextColor={colors.tabsSecondaryText}
                     />
-                    <MaterialIcons name="search" size={24} color="#A9A9A9" style={styles.searchIcon} />
+                    <MaterialIcons name="search" size={24} color={colors.tabsSecondaryText} style={styles.searchIcon} />
                 </View>
             </View>
 
@@ -77,12 +78,12 @@ export default MessagesTab;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F4F5F7',
+        backgroundColor: colors.tabsBackground,
     },
     // Header styles
     header: {
         padding: 20,
-        backgroundColor: '#F4F5F7',
+        backgroundColor: colors.tabsBackground,
         borderBottomLeftRadius: 30,
         borderBottomRightRadius: 30,
     },
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#2C3E50',
+        color: colors.tabsPrimary,
     },
     // Search Bar with Icon
     searchContainer: {
@@ -105,9 +106,9 @@ const styles = StyleSheet.create({
         paddingRight: 40, // Add padding to the right so the text doesn't overlap the icon
         paddingHorizontal: 15,
         paddingVertical: 10,
-        backgroundColor: '#F0F0F0',
+        backgroundColor: colors.tabsSeondary,
         borderRadius: 20,
-        color: '#2C3E50',
+        color: colors.tabsSecondaryText,
     },
     searchIcon: {
         position: 'absolute',
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 4,
-        backgroundColor: 'white',
+        backgroundColor: colors.tabsMainText,
         padding: 15,
         borderRadius: 10,
         
@@ -142,21 +143,21 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#2C3E50',
+        color: colors.tabsPrimary,
     },
     lastMessage: {
         fontSize: 14,
-        color: '#A9A9A9',
+        color: colors.tabsSecondaryText,
     },
     timeContainer: {
         alignItems: 'flex-end',
     },
     time: {
         fontSize: 12,
-        color: '#A9A9A9',
+        color: colors.tabsSecondaryText,
     },
     unreadBadge: {
-        backgroundColor: '#27AE60',
+        backgroundColor: colors.tabsValid,
         borderRadius: 10,
         paddingHorizontal: 8,
         paddingVertical: 2,

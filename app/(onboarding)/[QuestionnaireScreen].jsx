@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, StyleSheet, Dimensions, SafeAreaView, FlatList, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { icons } from '../../constants';
+import { colors } from '../../constants/colors';
 
 const { width, height } = Dimensions.get('window');
 
@@ -175,13 +176,13 @@ export default QuestionnaireScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#213E53',
+    backgroundColor: colors.onboardingBackground,
     justifyContent: 'center',
     alignItems: 'center',
   },
   title: {
     fontSize: 32,
-    color: 'white',
+    color: colors.onboardingMainText,
     marginBottom: 30,
     fontWeight: 'bold'
   },
@@ -193,20 +194,20 @@ const styles = StyleSheet.create({
     pointerEvents: 'none', // Disable other sections when dropdown is visible
   },
   label: {
-    color: 'white',
+    color: colors.onboardingMainText,
     fontSize: 16,
     marginBottom: 8,
     marginLeft: '3%'
   },
   button: {
-    borderColor: 'white',
+    borderColor: colors.onboardingMainText,
     borderWidth: 1,
     borderRadius: 25,
     paddingVertical: 10,
     paddingHorizontal: 15,
   },
   inputText: {
-    color: 'white',
+    color: colors.onboardingMainText,
     fontSize: 16,
   },
   overlay: {
@@ -221,7 +222,7 @@ const styles = StyleSheet.create({
   },
   dropdownContainer: {
     position: 'absolute',
-    backgroundColor: 'white',
+    backgroundColor: colors.onboardingMainText,
     alignSelf: 'center',
     borderRadius: 10,
     padding: 10,
@@ -233,6 +234,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   optionText: {
+    color: colors.onboardingDropdownText,
     fontSize: 16,
   },
   modalDropdown: {
@@ -250,7 +252,7 @@ const styles = StyleSheet.create({
   },
   genderLabel: {
     fontSize: 16,
-    color: '#2C3E50',
+    color: colors.onboardingDropdownText,
   },
   iconWithLabel: {
   alignItems: 'center', 
@@ -259,7 +261,7 @@ const styles = StyleSheet.create({
   sizeLabel: {
     marginTop: 5, // Add some space between the image and the text
     fontSize: 16,
-    color: '#2C3E50',
+    color: colors.onboardingDropdownText,
     textAlign: 'center', // Center the text
   },
   sizeOption: {
@@ -270,11 +272,11 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   },
   skipText: {
-    color: 'white',
+    color: colors.onboardingMainText,
     fontSize: 16,
   },
   addButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: colors.onboardingButton,
     padding: 15,
     borderRadius: 25,
     width: '80%',

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, Modal, Pressable, TextInput, FlatList } from 'react-native';
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { colors } from '../../constants/colors';
 
 const getCurrentMonthAndYear = () => {
   const date = new Date();
@@ -84,10 +85,10 @@ const PlaydatesTab = () => {
       <View style={styles.header}>
         <View style={styles.headerTopRow}>
           <Text style={styles.headerTitle}>Playdates</Text>
-          <MaterialIcons name="notifications-none" size={24} color="white" />
+          <MaterialIcons name="notifications-none" size={24} color={colors.tabsMainText} />
         </View>
         <View style={styles.headerDateRow}>
-          <MaterialIcons name="calendar-today" size={20} color="white" />
+          <MaterialIcons name="calendar-today" size={20} color={colors.tabsMainText} />
           <Text style={styles.headerDateText}>{getCurrentMonthAndYear()}</Text>
         </View>
       </View>
@@ -112,7 +113,7 @@ const PlaydatesTab = () => {
             <View style={styles.eventDetails}>
               <Text style={styles.eventName}>Name</Text>
               <View style={styles.eventLocationRow}>
-                <FontAwesome5 name="map-marker-alt" size={12} color="gray" />
+                <FontAwesome5 name="map-marker-alt" size={12} color={colors.tabsPrimary} />
                 <Text style={styles.eventLocation}>Some Park</Text>
               </View>
               <Text style={styles.eventTime}>10:00 - 12:00</Text>
@@ -143,14 +144,14 @@ const PlaydatesTab = () => {
               <View style={styles.inputContainer}>
                 <Text style={styles.label}>Date</Text>
                 <View style={styles.iconAndPickerDate}>
-                  <FontAwesome5 name="calendar-alt" size={24} color="#A9A9A9" />
+                  <FontAwesome5 name="calendar-alt" size={24} color={colors.tabsSecondaryText} />
                   <DateTimePicker value={selectedDate} mode="date" display="default" onChange={handleDateChange} style={styles.dateTimePicker} />
                 </View>
               </View>
               <View style={styles.inputContainer}>
                 <Text style={styles.label}>Time</Text>
                 <View style={styles.iconAndPickerTime}>
-                  <MaterialIcons name="access-time" size={24} color="#A9A9A9" />
+                  <MaterialIcons name="access-time" size={24} color={colors.tabsSecondaryText} />
                   <DateTimePicker value={selectedTime} mode="time" display="default" onChange={handleTimeChange} style={styles.dateTimePicker} />
                 </View>
               </View>
@@ -160,11 +161,11 @@ const PlaydatesTab = () => {
             <View style={styles.inputContainerFullWidth}>
               <Text style={styles.label}>Location</Text>
               <View style={styles.inputWrapperFullWidth}>
-                <MaterialIcons name="location-on" size={16} color="#A9A9A9" />
+                <MaterialIcons name="location-on" size={16} color={colors.tabsSecondaryText} />
                 <TextInput
                   style={styles.inputFullWidth}
                   placeholder="Enter location"
-                  placeholderTextColor="#A9A9A9"
+                  placeholderTextColor={colors.tabsSecondaryText}
                   value={locationInput}
                   onChangeText={setLocationInput}
                 />
@@ -175,11 +176,11 @@ const PlaydatesTab = () => {
              <View style={styles.inputContainerFullWidth}>
               <Text style={styles.label}>Invite Friends</Text>
               <TouchableOpacity style={styles.inputWrapperFullWidth} onPress={toggleFriendsDropdown}>
-               <MaterialIcons name="person" size={16} color="#A9A9A9" />
-                 <Text style={[styles.inputFullWidth, { color: selectedFriends.length > 0 ? '#2C3E50' : '#A9A9A9' }]}>
+               <MaterialIcons name="person" size={16} color={colors.tabsSecondaryText} />
+                 <Text style={[styles.inputFullWidth, { color: selectedFriends.length > 0 ? colors.tabsPrimary : colors.tabsSecondaryText }]}>
                    {selectedFriends.length > 0 ? selectedFriends.map(f => f.name).join(', ') : 'Select friends'}
                  </Text>
-               <MaterialIcons name={friendsDropdownVisible ? "expand-less" : "expand-more"} size={16} color="#A9A9A9" />
+               <MaterialIcons name={friendsDropdownVisible ? "expand-less" : "expand-more"} size={16} color={colors.tabsSecondaryText} />
               </TouchableOpacity>
               {friendsDropdownVisible && (
                 <View style={styles.scrollableListContainer}>
@@ -225,11 +226,11 @@ export default PlaydatesTab;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f4f5f7',
+    backgroundColor: colors.tabsBackground,
   },
   // Header styles
   header: {
-    backgroundColor: '#2C3E50',
+    backgroundColor: colors.tabsPrimary,
     padding: 20,
   },
   headerTopRow: {
@@ -241,7 +242,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'white',
+    color: colors.tabsMainText,
     paddingBottom: 10,
   },
   headerDateRow: {
@@ -250,13 +251,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   headerDateText: {
-    color: 'white',
+    color: colors.tabsMainText,
     marginLeft: 10,
     fontSize: 16,
   },
   // Date Picker styles
   datePickerContainer: {
-    backgroundColor: '#2C3E50',
+    backgroundColor: colors.tabsPrimary,
     paddingVertical: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -272,12 +273,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
   },
   dateText: {
-    color: 'white',
+    color: colors.tabsSeondary,
     fontSize: 16,
   },
   boldText: {
     fontWeight: 'bold',
-    color: 'white',
+    color:colors.tabsMainText,
     fontSize: 22,
   },
   // Schedule styles
@@ -290,13 +291,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   time: {
-    color: 'gray',
+    color: colors.tabsSecondaryText,
     fontSize: 16,
     width: 60,
   },
   eventCard: {
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: colors.tabsMainText,
     borderRadius: 15,
     padding: 15,
     flex: 1,
@@ -316,11 +317,11 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   eventLocation: {
-    color: 'gray',
+    color: colors.tabsPrimary,
     marginLeft: 5,
   },
   eventTime: {
-    color: 'gray',
+    color: colors.tabsSecondaryText,
     marginTop: 5,
   },
   eventImage: {
@@ -339,7 +340,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 125,
     right: 20,
-    backgroundColor: '#2C3E50',
+    backgroundColor: colors.tabsPrimary,
     width: 60,
     height: 60,
     borderRadius: 20,
@@ -356,7 +357,7 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     width: '90%',
-    backgroundColor: '#2C3E50',
+    backgroundColor: colors.tabsPrimary,
     padding: 20,
     borderRadius: 20,
     alignItems: 'center',
@@ -365,7 +366,7 @@ const styles = StyleSheet.create({
     fontSize: 27,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: 'white',
+    color: colors.tabsMainText,
   },
   inputRow: {
     flexDirection: 'row',
@@ -395,20 +396,20 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: 'white',
+    color: colors.tabsMainText,
     marginBottom: 5,
   },
   inputWrapperFullWidth: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F0F0F0',
+    backgroundColor: colors.tabsSeondary,
     padding: 10,
     borderRadius: 10,
     width: '100%',
   },
   inputFullWidth: {
     flex: 1,
-    color: '#2C3E50',
+    color: colors.tabsPrimary,
     marginLeft: 10,
   },
   buttonRow: {
@@ -418,7 +419,7 @@ const styles = StyleSheet.create({
   },
   cancelButton: {
     flex: 1,
-    backgroundColor: '#2C3E50',
+    backgroundColor: colors.tabsPrimary,
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
@@ -426,7 +427,7 @@ const styles = StyleSheet.create({
   },
   createButton: {
     flex: 1,
-    backgroundColor: '#27AE60',
+    backgroundColor: colors.tabsValid,
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
@@ -445,7 +446,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#EAEAEA',
+    borderBottomColor: colors.tabsMainText,
   },
   friendImage: {
     width: 30,
@@ -455,14 +456,14 @@ const styles = StyleSheet.create({
   },
   friendName: {
     fontSize: 16,
-    color: 'white',
+    color: colors.tabsMainText,
     flex: 1,
   },
   greenDot: {
     width: 8,
     height: 8,
     borderRadius: 6,
-    backgroundColor: '#27AE60',
+    backgroundColor: colors.tabsValid,
     marginLeft: 'auto',
   },
 });

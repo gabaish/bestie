@@ -5,6 +5,7 @@ import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker'; // Add ImagePicker import
 import { useNavigation } from '@react-navigation/native';
 import { useLocalSearchParams } from 'expo-router';
+import { colors } from '../../constants/colors';
 
 const avatarImage = require('../../assets/images/boca2.png'); // Make sure this image path is correct
 
@@ -77,9 +78,9 @@ const ProfileScreen = () => {
                             maximumValue={100}
                             value={dogInfo.energyLevel}
                             onValueChange={(value) => setDogInfo({ ...dogInfo, energyLevel: value })}
-                            minimumTrackTintColor="#2C3E50"  
-                            maximumTrackTintColor="#C0C0C0"  
-                            thumbTintColor="#2C3E50"
+                            minimumTrackTintColor={colors.tabsPrimary} 
+                            maximumTrackTintColor={colors.tabsProfileTabs}  
+                            thumbTintColor={colors.tabsPrimary}
                                      
                 />
                 </View>  
@@ -105,7 +106,7 @@ const ProfileScreen = () => {
             {/* Profile Header */}
             <View style={styles.headerContainer}>
                 <TouchableOpacity  onPress={() => navigation.goBack()}>
-                    <FontAwesome5 name="chevron-left" size={20} color="#2C3E50" />
+                    <FontAwesome5 name="chevron-left" size={20} color={colors.tabsPrimary} />
                 </TouchableOpacity>
                 <Text style={styles.headerText}>Profile</Text>
             </View>
@@ -154,7 +155,7 @@ export default ProfileScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F4F5F7',
+        backgroundColor: colors.tabsBackground,
         paddingHorizontal: 20,
     },
     // Profile Header styles
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
     headerText: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#2C3E50',
+        color: colors.tabsPrimary,
     },
     headerIcons: {
         flexDirection: 'row',
@@ -183,7 +184,7 @@ const styles = StyleSheet.create({
         width: '90%',
         flexDirection: 'row',
         marginVertical: 10,
-        backgroundColor: '#E0E0E0',
+        backgroundColor: colors.tabsProfileTabs,
         borderRadius: 15,
         alignSelf: 'center'
     },
@@ -193,11 +194,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,
-        backgroundColor: '#E0E0E0',
+        backgroundColor: colors.tabsProfileTabs,
         margin: 7,
     },
     activeTab: {
-        backgroundColor: '#2C3E50',
+        backgroundColor: colors.tabsPrimary,
     },
     tabText: {
         fontSize: 16,
@@ -232,7 +233,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     headline: {
-        color:'#8D8D8D',
+        color:colors.tabsSecondaryText,
         flexDirection :'row',
         justifyContent: 'flex-start',
         width: '100%',
@@ -240,7 +241,7 @@ const styles = StyleSheet.create({
         fontSize: 16
     },
     infoData:{
-        backgroundColor: 'white',
+        backgroundColor: colors.tabsMainText,
         borderRadius: 25,
         padding: 18,
         paddingVertical: 20,
@@ -254,11 +255,11 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#2C3E50',
+        color: colors.tabsPrimary,
         marginVertical: 7,
     },
     labelInfo:{
-        backgroundColor:'#F7F7F7',
+        backgroundColor:colors.tabsBackground,
         borderRadius: 17,
         paddingVertical: 10,
         paddingHorizontal: 15,
@@ -267,14 +268,14 @@ const styles = StyleSheet.create({
     input: {
         borderBottomWidth: 2,
         color: '#2C3E50',
-        borderBottomColor: '#2C3E50',
+        borderBottomColor: colors.tabsPrimary,
         marginBottom: 10,
         fontSize: 16,
         paddingVertical: 5,
         width: '70%',
     },
     sliderView: {
-        backgroundColor:'#F7F7F7',
+        backgroundColor:colors.tabsBackground,
         borderRadius: 25,
         paddingHorizontal: 15,
         overflow: 'hidden'
@@ -291,7 +292,7 @@ const styles = StyleSheet.create({
     },
     mutualFriendCard: {
         width: '85%',
-        backgroundColor: '#F0F0F0',
+        backgroundColor: colors.tabsSeondary,
         padding: 20,
         borderRadius: 15,
         marginVertical: 10,
@@ -299,7 +300,7 @@ const styles = StyleSheet.create({
     mutualFriendCardText: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#9D9D9D',
+        color: colors.tabsSecondaryText,
     },
     // Modal Styles
     modalContainer: {
@@ -309,7 +310,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(44, 62, 80, 0.5)', // Translucent background
     },
     modalContent: {
-        backgroundColor: '#2C3E50',
+        backgroundColor: colors.tabsPrimary,
         padding: 25,
         borderRadius: 50,
         alignItems: 'center',
@@ -321,19 +322,13 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         marginBottom: 20,
     },
-    modalButton: {
-        backgroundColor: '#27AE60',
-        padding: 10,
-        borderRadius: 10,
-        marginBottom: 10,
-    },
     modalCloseButton: {
-        backgroundColor: '#2C3E50',
+        backgroundColor: colors.tabsPrimary,
         padding: 10,
         borderRadius: 10,
     },
     modalButtonText: {
-        color: 'white',
+        color: colors.tabsMainText,
         fontWeight: 'bold',
     },
 });

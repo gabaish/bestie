@@ -5,6 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { useLocalSearchParams } from 'expo-router'; // Import for dynamic route params
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors } from '../../constants/colors';
 
 // Import the image from the assets folder (this is for React Native)
 const avatarImage = require('../../assets/images/boca2.png');
@@ -68,7 +69,7 @@ const ConversationScreen = () => {
                     {/* Header */}
                     <View style={styles.header}>
                         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-                            <FontAwesome5 name="chevron-left" size={20} color="#2C3E50" />
+                            <FontAwesome5 name="chevron-left" size={20} color={colors.tabsPrimary} />
                         </TouchableOpacity>
                         <Image source={avatarImage} style={styles.avatar} />
                         <View style={styles.userInfo}>
@@ -105,7 +106,7 @@ const ConversationScreen = () => {
                                         <View style={styles.inputContainer}>
                                             <Text style={styles.label}>Date</Text>
                                             <View style={styles.iconAndPickerDate}>
-                                                <FontAwesome5 name="calendar-alt" size={24} color="#A9A9A9" />
+                                                <FontAwesome5 name="calendar-alt" size={24} color={colors.tabsMainText} />
                                                 <DateTimePicker
                                                     value={selectedDate}
                                                     mode="date"
@@ -118,7 +119,7 @@ const ConversationScreen = () => {
                                         <View style={styles.inputContainer}>
                                             <Text style={styles.label}>Time</Text>
                                             <View style={styles.iconAndPickerTime}>
-                                                <MaterialIcons name="access-time" size={24} color="#A9A9A9" />
+                                                <MaterialIcons name="access-time" size={24} color={colors.tabsMainText} />
                                                 <DateTimePicker
                                                     value={selectedTime}
                                                     mode="time"
@@ -134,11 +135,11 @@ const ConversationScreen = () => {
                                     <View style={styles.inputContainerFullWidth}>
                                         <Text style={styles.label}>Location</Text>
                                         <View style={styles.inputWrapperFullWidth}>
-                                            <MaterialIcons name="location-on" size={16} color="#A9A9A9" />
+                                            <MaterialIcons name="location-on" size={16} color={colors.tabsSecondaryText} />
                                             <TextInput
                                                 style={styles.inputFullWidth}
                                                 placeholder="Enter location"
-                                                placeholderTextColor="#A9A9A9"
+                                                placeholderTextColor={colors.tabsSecondaryText}
                                                 value={locationInput}
                                                 onChangeText={setLocationInput}
                                             />
@@ -163,7 +164,7 @@ const ConversationScreen = () => {
                     <View style={styles.messageInputContainer}>
                         <View style={styles.innerContainer}>
                             <TouchableOpacity style={styles.attachmentButton} onPress={handleShowModal}>
-                                <FontAwesome5 name="calendar-day" size={24} color="white" />
+                                <FontAwesome5 name="calendar-day" size={24} color={colors.tabsMainText} />
                             </TouchableOpacity>
                             <TextInput
                                 style={[styles.messageInput, { height: Math.max(35, inputHeight) }]}
@@ -174,7 +175,7 @@ const ConversationScreen = () => {
                                 textAlignVertical="center"
                             />
                             <TouchableOpacity style={styles.sendButton}>
-                                 <FontAwesome5 name="arrow-right" size={24} color="#2C3E50" />
+                                 <FontAwesome5 name="arrow-right" size={24} color={colors.tabsPrimary} />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -190,8 +191,7 @@ export default ConversationScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F4F5F7',
-        
+        backgroundColor: colors.tabsBackground,
     },
     // Header Styles
     header: {
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 20,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.tabsMainText,
     },
     backButton: {
         marginRight: 10,
@@ -216,11 +216,11 @@ const styles = StyleSheet.create({
     userName: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#2C3E50',
+        color: colors.tabsPrimary,
     },
     userStatus: {
         fontSize: 14,
-        color: '#27AE60',
+        color: colors.tabsValid,
     },
     statusContainer: {
         flexDirection: 'row',
@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
         width: 7,
         height: 7,
         borderRadius: 4,
-        backgroundColor: '#27AE60',
+        backgroundColor: colors.tabsValid,
         marginRight: 5,
     },
     // Messages List
@@ -254,11 +254,11 @@ const styles = StyleSheet.create({
     },
     messageText: {
         fontSize: 16,
-        color: '#2C3E50',
+        color: colors.tabsPrimary,
     },
     messageTime: {
         fontSize: 11,
-        color: '#595959',
+        color: colors.tabsSecondaryText,
         textAlign: 'left',
         marginTop: 5,
     },
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
     },
     modalContent: {
         width: '90%',
-        backgroundColor: '#2C3E50',
+        backgroundColor: colors.tabsPrimary,
         padding: 20,
         borderRadius: 20,
         alignItems: 'center',
@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
         fontSize: 27,
         fontWeight: 'bold',
         marginBottom: 20,
-        color: 'white',
+        color: colors.tabsMainText,
     },
     inputRow: {
         flexDirection: 'row',
@@ -295,8 +295,8 @@ const styles = StyleSheet.create({
     },
     iconAndPickerDate: {
         flexDirection: 'row',
-        justifyContent: 'flex-start', // Ensures the icon and picker stay on the left
-        alignItems: 'center',         // Vertically center the items
+        justifyContent: 'flex-start', 
+        alignItems: 'center',         
     },
 
     iconAndPickerTime: {
@@ -312,20 +312,20 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: 'white',
+        color: colors.tabsMainText,
         marginBottom: 5,
     },
     inputWrapperFullWidth: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#F0F0F0',
+        backgroundColor: colors.tabsSeondary,
         padding: 10,
         borderRadius: 10,
         width: '100%',
     },
     inputFullWidth: {
         flex: 1,
-        color: '#2C3E50',
+        color: colors.tabsPrimary,
         marginLeft: 10,
     },
     dateTimePicker: {
@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
     },
     cancelButton: {
         flex: 1,
-        backgroundColor: '#2C3E50',
+        backgroundColor: colors.tabsPrimary,
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
@@ -347,7 +347,7 @@ const styles = StyleSheet.create({
     },
     createButton: {
         flex: 1,
-        backgroundColor: '#27AE60',
+        backgroundColor:colors.tabsValid,
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
@@ -373,7 +373,7 @@ const styles = StyleSheet.create({
     attachmentButton: {
         width: 40,
         height: 40,
-        backgroundColor: '#2C3E50',
+        backgroundColor: colors.tabsPrimary,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 15,
@@ -383,9 +383,9 @@ const styles = StyleSheet.create({
     },
     messageInput: {
         paddingHorizontal: 15,
-        backgroundColor: '#F0F0F0',
+        backgroundColor: colors.tabsBackground,
         borderRadius: 20,
-        color: '#2C3E50',
+        color: colors.tabsPrimary,
         flex: 1,
         marginHorizontal: 13,
         marginBottom:20,

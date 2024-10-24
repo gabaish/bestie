@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { colors } from '../constants/colors';
 
 const SettingsScreen = () => {
     const navigation = useNavigation(); // Initialize navigation hook
@@ -11,7 +12,7 @@ const SettingsScreen = () => {
             {/* Settings Header */}
             <View style={styles.headerContainer}>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-                    <FontAwesome5 name="chevron-left" size={20} color="#2C3E50" />
+                    <FontAwesome5 name="chevron-left" size={20} color={colors.tabsPrimary} />
                 </TouchableOpacity>
                 <Text style={styles.headerText}>Settings</Text>
             </View>
@@ -21,7 +22,7 @@ const SettingsScreen = () => {
                 {['Account', 'Notifications', 'Map', 'Privacy'].map((option, index) => (
                     <TouchableOpacity key={index} style={styles.settingsItem}>
                         <Text style={styles.settingsText}>{option}</Text>
-                        <FontAwesome5 name="chevron-right" size={20} color="#7F8C8D" />
+                        <FontAwesome5 name="chevron-right" size={20} color={colors.tabsSecondaryText} />
                     </TouchableOpacity>
                 ))}
             </View>
@@ -34,7 +35,7 @@ export default SettingsScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F4F5F7',
+        backgroundColor: colors.tabsBackground,
         paddingHorizontal: 20,
     },
     headerContainer: {
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     headerText: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#2C3E50',
+        color: colors.tabsPrimary,
     },
     settingsContainer: {
         width: '90%',
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     settingsItem: {
-        backgroundColor: '#F0F0F0',
+        backgroundColor: colors.tabsSeondary,
         padding: 15,
         borderRadius: 10,
         flexDirection: 'row',
@@ -67,6 +68,6 @@ const styles = StyleSheet.create({
     },
     settingsText: {
         fontSize: 18,
-        color: '#2C3E50',
+        color: colors.tabsSecondaryText,
     },
 });

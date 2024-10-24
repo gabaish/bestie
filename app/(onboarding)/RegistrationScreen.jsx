@@ -2,6 +2,7 @@ import React from 'react';
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image, SafeAreaView } from 'react-native';
 import { icons } from '../../constants';
+import { colors } from '../../constants/colors';
 
 const { width } = Dimensions.get('window');
 
@@ -60,20 +61,20 @@ const RegistrationScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#213E53',
+    backgroundColor: colors.onboardingBackground ,
     justifyContent: 'center',
     alignItems: 'center',
   },
   mainText: {
     fontSize: 32,
-    color: 'white',
+    color: colors.onboardingMainText,
     fontWeight: 'bold',
     marginBottom: 20,
     marginTop:'18%',
   },
   subText: {
     fontSize: 16,
-    color: 'white',
+    color: colors.onboardingMainText,
     textAlign: 'center',
   },
   headerSubText: {
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
   },
   footerText: {
     fontSize: 12,
-    color: '#AAAAAA',
+    color: colors.onboardingSecondaryText,
     textAlign: 'center',
     marginBottom: '4%',
     width:'80%',

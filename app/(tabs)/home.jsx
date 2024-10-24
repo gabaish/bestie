@@ -5,6 +5,7 @@ import * as Location from 'expo-location';
 import { MaterialIcons } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
 import { icons } from '../../constants';
+import { colors } from '../../constants/colors';
 
 const { width, height } = Dimensions.get('window');
 
@@ -143,11 +144,11 @@ export default function MapComponent() {
           {
             showFilters?
             <TouchableOpacity style={styles.menuButton} onPress={toggleFilters}>
-            <MaterialIcons name="close" size={24} color="white" />
+            <MaterialIcons name="close" size={24} color={colors.tabsMainText} />
             </TouchableOpacity>
             :
             <TouchableOpacity style={styles.menuButton} onPress={toggleFilters}>
-            <MaterialIcons name="menu" size={24} color="white" />
+            <MaterialIcons name="menu" size={24} color={colors.tabsMainText} />
             </TouchableOpacity>
           }
 
@@ -157,20 +158,20 @@ export default function MapComponent() {
         {/* Conditionally Render Filter Buttons */}
         {showFilters && (
           <View style={styles.filterButtonsContainer}>
-            <TouchableOpacity style={[styles.filterButton, {backgroundColor: selectedSize.length!=0?'#CDCDCD':'#2C3E50'}]} onPress={()=> hideOtherFilters("size")}>
-              <Text style={[styles.filterButtonText, {backgroundColor: selectedSize.length!=0?'#CDCDCD':'#2C3E50'}, {color:selectedSize.length!=0?'#2C3E50':'white'}]}>Size</Text>
+            <TouchableOpacity style={[styles.filterButton, {backgroundColor: selectedSize.length!=0?colors.tabsSeondary:colors.tabsPrimary}]} onPress={()=> hideOtherFilters("size")}>
+              <Text style={[styles.filterButtonText, {backgroundColor: selectedSize.length!=0?colors.tabsSeondary:colors.tabsPrimary}, {color:selectedSize.length!=0?colors.tabsPrimary:colors.tabsMainText}]}>Size</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.filterButton,{backgroundColor: selectedAge.length!=0?'#CDCDCD':'#2C3E50'}]} onPress={()=> hideOtherFilters("age")}>
-              <Text style={[styles.filterButtonText,{backgroundColor: selectedAge.length!=0?'#CDCDCD':'#2C3E50'}, {color:selectedAge.length!=0?'#2C3E50':'white'}]}>Age</Text>
+            <TouchableOpacity style={[styles.filterButton,{backgroundColor: selectedAge.length!=0?colors.tabsSeondary:colors.tabsPrimary}]} onPress={()=> hideOtherFilters("age")}>
+              <Text style={[styles.filterButtonText,{backgroundColor: selectedAge.length!=0?colors.tabsSeondary:colors.tabsPrimary}, {color:selectedAge.length!=0?colors.tabsPrimary:colors.tabsMainText}]}>Age</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.filterButton,{backgroundColor: selectedGender!=''?'#CDCDCD':'#2C3E50'}]} onPress={()=> hideOtherFilters("gender")}>
-              <Text style={[styles.filterButtonText,{backgroundColor: selectedGender!=''?'#CDCDCD':'#2C3E50'}, {color:selectedGender!=''?'#2C3E50':'white'}]}>Gender</Text>
+            <TouchableOpacity style={[styles.filterButton,{backgroundColor: selectedGender!=''?colors.tabsSeondary:colors.tabsPrimary}]} onPress={()=> hideOtherFilters("gender")}>
+              <Text style={[styles.filterButtonText,{backgroundColor: selectedGender!=''?colors.tabsSeondary:colors.tabsPrimary}, {color:selectedGender!=''?colors.tabsPrimary:colors.tabsMainText}]}>Gender</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.filterButton,{backgroundColor: energyDropdownVisible?'#CDCDCD':'#2C3E50'}]}  onPress={()=> hideOtherFilters("energy")}>
-              <Text style={[styles.filterButtonText,{backgroundColor: energyDropdownVisible?'#CDCDCD':'#2C3E50'}, {color:energyDropdownVisible?'#2C3E50':'white'}]}>Energy Level</Text>
+            <TouchableOpacity style={[styles.filterButton,{backgroundColor: energyDropdownVisible?colors.tabsSeondary:colors.tabsPrimary}]}  onPress={()=> hideOtherFilters("energy")}>
+              <Text style={[styles.filterButtonText,{backgroundColor: energyDropdownVisible?colors.tabsSeondary:colors.tabsPrimary}, {color:energyDropdownVisible?colors.tabsPrimary:colors.tabsMainText}]}>Energy Level</Text>
             </TouchableOpacity>
           </View>
         )   
@@ -310,12 +311,12 @@ export default function MapComponent() {
 
         {/* Button to return to the user's location */}
         <TouchableOpacity style={styles.locationButton} onPress={centerToUserLocation}>
-          <MaterialIcons name="my-location" size={24} color="white" />
+          <MaterialIcons name="my-location" size={24} color={colors.tabsMainText} />
         </TouchableOpacity>
 
         {/* Button to open radius slider */}
         <TouchableOpacity style={styles.radiusButton} onPress={toggleRadiusSlider}>
-          <MaterialIcons name="tune" size={24} color="white" />
+          <MaterialIcons name="tune" size={24} color={colors.tabsMainText} />
         </TouchableOpacity>
 
         {/* Radius Slider */}
@@ -328,7 +329,7 @@ export default function MapComponent() {
               step={100}
               value={radius}
               onValueChange={(value) => setRadius(value)}
-              minimumTrackTintColor="#4CAF50"
+              minimumTrackTintColor={colors.tabsValid}
               maximumTrackTintColor="#AAAAAA"
               thumbTintColor="#FFFFFF"
             />
@@ -359,7 +360,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    backgroundColor: '#2C3E50',
+    backgroundColor: colors.tabsPrimary,
     borderRadius: 25,
     zIndex: 1,
   },
@@ -367,16 +368,16 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
-    backgroundColor: '#2C3E50',
+    backgroundColor: colors.tabsPrimary,
     paddingVertical: 5,
     paddingHorizontal: 0,
     borderRadius: 20,
   },
   filterButtonText: {
-    color: 'white',
+    color: colors.tabsMainText,
     fontSize: 12,
     fontWeight: 'bold',
-    backgroundColor: '#2C3E50',
+    backgroundColor: colors.tabsPrimary,
     paddingVertical: 5,
     paddingHorizontal: 15,
     borderRadius: 20,
@@ -394,7 +395,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   filterButton: {
-    backgroundColor: '#2C3E50',
+    backgroundColor: colors.tabsPrimary,
     paddingVertical: 5,
     paddingHorizontal: 6,
     borderRadius: 20,
@@ -403,7 +404,7 @@ const styles = StyleSheet.create({
   },
   dropdownContainer: {
     position: 'absolute',
-    backgroundColor: '#2C3E50',
+    backgroundColor: colors.tabsPrimary,
     alignSelf: 'center',
     borderRadius: 20,
     width:'75%',
@@ -436,7 +437,7 @@ const styles = StyleSheet.create({
   },
   genderLabel: {
     fontSize: 14,
-    color: '#CDCDCD',
+    color: colors.tabsMainText,
   },
   sliderView:{
     paddingHorizontal:15
@@ -483,7 +484,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 20,
     bottom: 140,
-    backgroundColor: '#2C3E50',
+    backgroundColor: colors.tabsPrimary,
     padding: 10,
     borderRadius: 25,
     justifyContent: 'center',
@@ -494,7 +495,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 20,
     bottom: 200,
-    backgroundColor: '#2C3E50',
+    backgroundColor: colors.tabsPrimary,
     padding: 10,
     borderRadius: 25,
     justifyContent: 'center',
@@ -505,7 +506,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 320,
     right: -42,
-    backgroundColor: '#2C3E50',
+    backgroundColor: colors.tabsPrimary,
     paddingHorizontal: 10,
     paddingVertical: 2,
     borderRadius: 25,

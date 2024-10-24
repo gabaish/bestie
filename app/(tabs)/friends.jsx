@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, ScrollView, FlatList, Image, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { images } from '../../constants';
+import { colors } from '../../constants/colors';
 import { useRouter } from 'expo-router';
 
 const friends = [
@@ -34,9 +35,9 @@ const FriendsTab = () => {
                     <TextInput
                         style={styles.searchBar}
                         placeholder="Search"
-                        placeholderTextColor="#A9A9A9"
+                        placeholderTextColor={colors.tabsSecondaryText}
                     />
-                    <MaterialIcons name="search" size={24} color="#A9A9A9" style={styles.searchIcon} />
+                    <MaterialIcons name="search" size={24} color={colors.tabsSecondaryText} style={styles.searchIcon} />
                 </View>
             </View>
 
@@ -64,7 +65,7 @@ const FriendsTab = () => {
                     <View style={styles.friendItem}>
                         <Image source={{ uri: item.image }} style={styles.friendImage} />
                         <Text style={styles.friendName}>{item.name}</Text>
-                        <FontAwesome5 name="comment-dots" size={20} color="#2C3E50" />
+                        <FontAwesome5 name="comment-dots" size={20} color={colors.tabsPrimary} />
                         
                     </View>
                   </TouchableOpacity>
@@ -81,14 +82,11 @@ export default FriendsTab;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F4F5F7',
+        backgroundColor: colors.tabsBackground,
     },
     // Header styles
     header: {
         padding: 20,
-        backgroundColor: '#F4F5F7',
-        borderBottomLeftRadius: 30,
-        borderBottomRightRadius: 30,
     },
     headerTopRow: {
         flexDirection: 'row',
@@ -99,13 +97,13 @@ const styles = StyleSheet.create({
       paddingLeft:10,
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#2C3E50',
+        color: colors.tabsPrimary,
     },
     searchBar: {
         marginTop: 10,
         paddingHorizontal: 15,
         paddingVertical: 10,
-        backgroundColor: '#F0F0F0',
+        backgroundColor: colors.tabsSeondary,
         borderRadius: 20,
         color: '#2C3E50',
     },
@@ -118,7 +116,7 @@ const styles = StyleSheet.create({
     favoriteSection: {
         padding: 20,
         paddingTop: 10,
-        backgroundColor: '#2C3E50',
+        backgroundColor: colors.tabsPrimary,
         borderRadius: 15,
         marginLeft: 10,
         marginRight: 10,
@@ -128,7 +126,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 10,
-        color: 'white',
+        color: colors.tabsMainText,
         paddingBottom: 15
     },
     favoriteScroll: {
@@ -155,11 +153,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 0,
-        backgroundColor: '#FAFAFA',
+        backgroundColor: colors.tabsMainText,
         padding: 15,
         borderRadius: 10,
         borderBottomWidth: 4,
-        borderBottomColor: '#F4F5F7'
+        borderBottomColor: colors.tabsBackground
     },
     friendImage: {
         width: 50,
@@ -171,6 +169,6 @@ const styles = StyleSheet.create({
     friendName: {
         flex: 1,
         fontSize: 16,
-        color: '#2C3E50',
+        color: colors.tabsPrimary,
     },
 });

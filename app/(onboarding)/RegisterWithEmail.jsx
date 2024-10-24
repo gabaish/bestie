@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, Dimensions, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
-
+import { colors } from '../../constants/colors';
 
 const { width } = Dimensions.get('window');
 
@@ -126,12 +126,12 @@ export default RegisterWithEmail;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#213E53',
+    backgroundColor: colors.onboardingBackground,
     alignItems: 'center',
   },
   mainText: {
     fontSize: 32,
-    color: 'white',
+    color: colors.onboardingMainText,
     fontWeight: 'bold',
     marginBottom: 10,
     textAlign: 'center',
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   },
   subText: {
     fontSize: 16,
-    color: '#D0D0D0',
+    color: colors.onboardingMainText,
     marginBottom: 30,
     textAlign: 'center',
     width:'80%',
@@ -150,23 +150,23 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    color: '#D0D0D0',
+    color: colors.onboardingMainText,
     marginBottom: 5,
   },
   input: {
-    borderColor: 'white',
+    borderColor: colors.onboardingMainText,
     borderWidth: 1,
     paddingVertical: 12,
     paddingHorizontal: 15,
     borderRadius: 25,
-    color: 'white',
+    color: colors.onboardingMainText,
     fontSize: 16,
   },
   inputValid: {
-    borderColor: 'green',
+    borderColor: colors.onboardingButton,
   },
   createButton: {
-    backgroundColor: '#27AE60',
+    backgroundColor: colors.onboardingButton,
     paddingVertical: 15,
     borderRadius: 25,
     width: '80%',
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   },
   footerText: {
     fontSize: 12,
-    color: '#AAAAAA',
+    color: colors.onboardingSecondaryText,
     textAlign: 'center',
     marginTop: 20,
     paddingHorizontal: 20,

@@ -1,6 +1,8 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import { Tabs, Redirect,useRouter } from 'expo-router';
 import { icons } from '../../constants';
+import { colors } from '../../constants/colors';
+
 import { MaterialIcons } from '@expo/vector-icons';
 
 
@@ -12,7 +14,7 @@ const TabIcon = ({icon, color, name, focused}) =>
             {
                 width: focused ? 65 : 50,
                 height: focused ? 65 : 50, 
-                backgroundColor: focused ? '#4CAF50' : '#2C3E50'
+                backgroundColor: focused ? colors.tabsValid : colors.tabsPrimary
             }
             
         ]}>
@@ -31,7 +33,7 @@ const TabsLayout = () => {
                  screenOptions={{
                     tabBarShowLabel: false,
                     tabBarActiveTintColor: '#FFFFFF',
-                    tabBarInactiveTintColor: '#8E8E93',
+                    tabBarInactiveTintColor: colors.tabsUnfocusedIcon,
                     tabBarStyle: styles.tabBarStyle
                  }}
                  style= {styles.bottomBar}   
@@ -125,11 +127,11 @@ const styles = StyleSheet.create({
         marginBottom: -30
     },
     tabBarStyle: {
-        backgroundColor: '#2C3E50', // No background color to simulate separate buttons
-        borderTopWidth: 0, // Remove default border line
-        height: 50, // Increased height for the larger center button
+        backgroundColor: colors.tabsPrimary, 
+        borderTopWidth: 0, 
+        height: 50, 
         position: 'absolute',
-        bottom: 65, // Lift the tab bar higher into the screen
+        bottom: 65, 
         left: '10%',
         right: '10%',
         justifyContent: 'center',

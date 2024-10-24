@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList, Dimensions,SafeAreaView } from 'react-native';
+import { colors } from '../../constants/colors';
 
 const { width, height } = Dimensions.get('window');
 
@@ -80,7 +81,7 @@ const LandingScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#213E53',
+    backgroundColor: colors.onboardingBackground,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -92,13 +93,13 @@ const styles = StyleSheet.create({
   },
   mainText: {
     fontSize: 32,
-    color: 'white',
+    color: colors.onboardingMainText,
     fontWeight: 'bold',
     marginBottom: '2.5%',
   },
   subText: {
     fontSize: 16,
-    color: 'white',
+    color: colors.onboardingMainText,
     textAlign: 'center',
     marginBottom: '12.5%',
   },
@@ -119,11 +120,11 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: 'white',
+    backgroundColor: colors.onboardingMainText,
     marginHorizontal: 4,
   },
   startButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: colors.onboardingButton,
     padding: 15,
     borderRadius: 25,
     position: 'absolute',
