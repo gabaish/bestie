@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity, TextInput, StyleSheet, Dimensions,
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { icons } from '../../constants';
 import { colors } from '../../constants/colors';
+import { OnboardingHeadline, OnboardingButton } from '../../components/onboardingComponents';
 
 const { width, height } = Dimensions.get('window');
 
@@ -53,7 +54,7 @@ const QuestionnaireScreen = ({ navigation, route }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Nice to meet you, {dogName}!</Text>
+    <OnboardingHeadline title={"Nice to meet you, " + dogName + "!"} style={styles.customHeadline}/>
 
       {/* Breed Section */}
       <View style={styles.section}>
@@ -164,9 +165,8 @@ const QuestionnaireScreen = ({ navigation, route }) => {
         <Text style={styles.skipText}>skip</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.addButton} onPress={handleAddButton}>
-        <Text style={styles.addButtonText}>Add</Text>
-      </TouchableOpacity>
+      <OnboardingButton title="Add" onPress={handleAddButton}/>
+      
     </SafeAreaView>
   );
 };
@@ -177,14 +177,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.onboardingBackground,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  title: {
-    fontSize: 32,
-    color: colors.onboardingMainText,
-    marginBottom: 30,
-    fontWeight: 'bold'
+  customHeadline: {
+    marginBottom: 30
   },
   section: {
     width: '80%',

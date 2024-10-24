@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList, Dimensions,SafeAreaView } from 'react-native';
 import { colors } from '../../constants/colors';
+import { OnboardingButton } from '../../components/onboardingComponents';
 
 const { width, height } = Dimensions.get('window');
 
@@ -69,11 +70,8 @@ const LandingScreen = ({ navigation }) => {
         ))}
       </View>
 
-      {/* Start Button */}
-      <TouchableOpacity style={styles.startButton} onPress={() => navigation.navigate('RegistrationScreen')}>
-        <Text style={styles.startButtonText}>Ready to go?
-        </Text>
-      </TouchableOpacity>
+      <OnboardingButton title="Ready to go?" onPress= {() => navigation.navigate('RegistrationScreen')}/>
+
     </SafeAreaView>
   );
 };
@@ -122,22 +120,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     backgroundColor: colors.onboardingMainText,
     marginHorizontal: 4,
-  },
-  startButton: {
-    backgroundColor: colors.onboardingButton,
-    padding: 15,
-    borderRadius: 25,
-    position: 'absolute',
-    bottom: '10%',
-    width: '80%',
-    alignItems: 'center',
-    
-  },
-  startButtonText: {
-    fontSize: 20,
-    color: 'white',
-    fontWeight: 'bold',
-  },
+  }
 });
 
 export default LandingScreen;

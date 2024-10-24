@@ -3,6 +3,7 @@ import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image, SafeAreaView } from 'react-native';
 import { icons } from '../../constants';
 import { colors } from '../../constants/colors';
+import { OnboardingHeadline } from '../../components/onboardingComponents';
 
 const { width } = Dimensions.get('window');
 
@@ -15,7 +16,8 @@ const RegistrationScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       {/* Main Title */}
-      <Text style={styles.mainText}>Come on, let's start</Text>
+      <OnboardingHeadline title="Come on, let's start" style={styles.customHeadline}/>
+      
       <Text style={[styles.subText,styles.headerSubText]}>First, you'll need to create{"\n"} an account with Bestie.</Text>
 
       {/* Google Login Button */}
@@ -62,15 +64,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.onboardingBackground ,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  mainText: {
-    fontSize: 32,
-    color: colors.onboardingMainText,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    marginTop:'18%',
+  customHeadline: {
+    marginBottom: 20
   },
   subText: {
     fontSize: 16,
