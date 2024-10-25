@@ -158,20 +158,20 @@ export default function MapComponent() {
         {/* Conditionally Render Filter Buttons */}
         {showFilters && (
           <View style={styles.filterButtonsContainer}>
-            <TouchableOpacity style={[styles.filterButton, {backgroundColor: selectedSize.length!=0?colors.tabsSeondary:colors.tabsPrimary}]} onPress={()=> hideOtherFilters("size")}>
-              <Text style={[styles.filterButtonText, {backgroundColor: selectedSize.length!=0?colors.tabsSeondary:colors.tabsPrimary}, {color:selectedSize.length!=0?colors.tabsPrimary:colors.tabsMainText}]}>Size</Text>
+            <TouchableOpacity style={[styles.filterButton, selectedSize.length != 0 ? styles.filterButtonSelected : null]} onPress={()=> hideOtherFilters("size")}>
+              <Text style={[styles.filterButtonText,selectedSize.length != 0 ? styles.selectedFilterButtonText : null]}>Size</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.filterButton,{backgroundColor: selectedAge.length!=0?colors.tabsSeondary:colors.tabsPrimary}]} onPress={()=> hideOtherFilters("age")}>
-              <Text style={[styles.filterButtonText,{backgroundColor: selectedAge.length!=0?colors.tabsSeondary:colors.tabsPrimary}, {color:selectedAge.length!=0?colors.tabsPrimary:colors.tabsMainText}]}>Age</Text>
+            <TouchableOpacity style={[styles.filterButton, selectedAge.length!=0 ? styles.filterButtonSelected : null]} onPress={()=> hideOtherFilters("age")}>
+              <Text style={[styles.filterButtonText, selectedAge.length!=0 ? styles.selectedFilterButtonText : null]}>Age</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.filterButton,{backgroundColor: selectedGender!=''?colors.tabsSeondary:colors.tabsPrimary}]} onPress={()=> hideOtherFilters("gender")}>
-              <Text style={[styles.filterButtonText,{backgroundColor: selectedGender!=''?colors.tabsSeondary:colors.tabsPrimary}, {color:selectedGender!=''?colors.tabsPrimary:colors.tabsMainText}]}>Gender</Text>
+            <TouchableOpacity style={[styles.filterButton, selectedGender!='' ? styles.filterButtonSelected : null]} onPress={()=> hideOtherFilters("gender")}>
+              <Text style={[styles.filterButtonText, selectedGender!='' ? styles.selectedFilterButtonText : null]}>Gender</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.filterButton,{backgroundColor: energyDropdownVisible?colors.tabsSeondary:colors.tabsPrimary}]}  onPress={()=> hideOtherFilters("energy")}>
-              <Text style={[styles.filterButtonText,{backgroundColor: energyDropdownVisible?colors.tabsSeondary:colors.tabsPrimary}, {color:energyDropdownVisible?colors.tabsPrimary:colors.tabsMainText}]}>Energy Level</Text>
+            <TouchableOpacity style={[styles.filterButton, energyDropdownVisible? styles.filterButtonSelected : null]}  onPress={()=> hideOtherFilters("energy")}>
+              <Text style={[styles.filterButtonText, energyDropdownVisible? styles.selectedFilterButtonText : null]}>Energy Level</Text>
             </TouchableOpacity>
           </View>
         )   
@@ -181,17 +181,17 @@ export default function MapComponent() {
             <View style={[styles.dropdownContainer, styles.modalDropdown, {top:'22%'}]}>
               <TouchableOpacity  onPress={() => { toggleSize('Small'); }}>
                 <View >
-                  <Image source={icons.dogSizeSmall} resizeMode="contain" style={{ width: 40, height: 40, paddingVertical:50, tintColor: isSelectedSize('Small')?'#056FA0':'#CDCDCD' }} />
+                  <Image source={icons.dogSizeSmall} resizeMode="contain" style={[{ width: 40, height: 40, paddingVertical:50}, styles.filterOption, isSelectedSize("Small")?styles.selectedFilterOption:null]} />
                 </View>
               </TouchableOpacity>
               <TouchableOpacity  onPress={() => { toggleSize('Medium'); }}>
                 <View >
-                  <Image source={icons.dogSizeMedium} resizeMode="contain" style={{ width: 60, height: 60, paddingVertical:50, tintColor: isSelectedSize('Medium')?'#056FA0':'#CDCDCD' }} />
+                  <Image source={icons.dogSizeMedium} resizeMode="contain" style={[{ width: 60, height: 60, paddingVertical:50}, styles.filterOption, isSelectedSize("Medium")?styles.selectedFilterOption:null]} />
                 </View>
               </TouchableOpacity>
               <TouchableOpacity  onPress={() => { toggleSize('Big');}}>
                 <View >
-                  <Image source={icons.dogSizeBig} resizeMode="contain" style={{ width: 80, height: 80, paddingVertical:50, tintColor: isSelectedSize('Big')?'#056FA0':'#CDCDCD' }} />
+                  <Image source={icons.dogSizeBig} resizeMode="contain" style={[{ width: 80, height: 80, paddingVertical:50}, styles.filterOption, isSelectedSize("Big")?styles.selectedFilterOption:null]} />
                 </View>
               </TouchableOpacity>
             </View>
@@ -202,22 +202,22 @@ export default function MapComponent() {
           <View style={[styles.dropdownContainer, styles.modalDropdown, {top:'22%'}]}>
             <TouchableOpacity  onPress={() => { toggleAge('0-1'); }}>
               <View style= {styles.ageOptionContainer} >
-                <Text style={[styles.ageOptionText,{ color:isSelectedAge("0-1")?'#056FA0':'#CDCDCD'}]} > 0-1 </Text>
-                <Text style= {[styles.ageOptionYearsText, { color:isSelectedAge("0-1")?'#056FA0':'#CDCDCD'}]}> Years</Text>
+                <Text style={[styles.ageOptionText, styles.filterOption, isSelectedAge("0-1")?styles.selectedFilterOption:null]} > 0-1 </Text>
+                <Text style= {[styles.ageOptionYearsText, styles.filterOption, isSelectedAge("0-1")?styles.selectedFilterOption:null]}> Years</Text>
               </View>
             </TouchableOpacity>
 
             <TouchableOpacity  onPress={() => { toggleAge('1-3'); }}>
               <View style= {styles.ageOptionContainer} >
-                <Text style={[styles.ageOptionText,{ color:isSelectedAge("1-3")?'#056FA0':'#CDCDCD'}]} > 1-3 </Text>
-                <Text style= {[styles.ageOptionYearsText, { color:isSelectedAge("1-3")?'#056FA0':'#CDCDCD'}]}> Years</Text>
+                <Text style={[styles.ageOptionText,styles.filterOption, isSelectedAge("1-3")?styles.selectedFilterOption:null]} > 1-3 </Text>
+                <Text style= {[styles.ageOptionYearsText, styles.filterOption, isSelectedAge("1-3")?styles.selectedFilterOption:null]}> Years</Text>
               </View>
             </TouchableOpacity>
 
             <TouchableOpacity  onPress={() => { toggleAge('3+');  }}>
               <View style= {styles.ageOptionContainer} >
-                <Text style={[styles.ageOptionText,{ color:isSelectedAge("3+")?'#056FA0':'#CDCDCD'}]} > 3+ </Text>
-                <Text style= {[styles.ageOptionYearsText, { color:isSelectedAge("3+")?'#056FA0':'#CDCDCD'}]}> Years</Text>
+                <Text style={[styles.ageOptionText, styles.filterOption, isSelectedAge("3+")?styles.selectedFilterOption:null]} > 3+ </Text>
+                <Text style= {[styles.ageOptionYearsText, styles.filterOption, isSelectedAge("3+")?styles.selectedFilterOption:null]}> Years</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -382,6 +382,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderRadius: 20,
   },
+  selectedFilterButtonText: {
+    backgroundColor: colors.tabsSeondary,
+    color: colors.tabsPrimary
+  },
   menuButton: {
     padding: 5,
   },
@@ -402,6 +406,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  filterButtonSelected: {
+    backgroundColor: colors.tabsSeondary,
+  },
   dropdownContainer: {
     position: 'absolute',
     backgroundColor: colors.tabsPrimary,
@@ -414,6 +421,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'flex-end'
+  },
+  filterOption:{
+    color: colors.tabsSeondary,
+    tintColor: colors.tabsSeondary
+  },
+  selectedFilterOption:{
+    color:'#056FA0',
+    tintColor: '#056FA0'
   },
   ageOptionContainer:{
     alignItems:'center',
