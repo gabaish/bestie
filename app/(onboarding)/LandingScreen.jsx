@@ -1,17 +1,31 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList, Dimensions,SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList, Dimensions, SafeAreaView } from 'react-native';
 import { colors } from '../../constants/colors';
+import { icons } from '../../constants';
+import { images } from '../../constants';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 const LandingScreen = ({ navigation }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const viewabilityConfig = { viewAreaCoveragePercentThreshold: 50 };
 
   const carouselItems = [
-    { id: '1', color: '#89CFF0' }, // Example color
-    { id: '2', color: '#FFD700' }, // Example color
-    { id: '3', color: '#FF69B4' },  // Example color
+    {
+      id: '1',
+      image: images.meetFriends,
+      subText: 'Find new dog friends in your area',
+    },
+    {
+      id: '2',
+      image: images.createPlaydates,
+      subText: 'Create and join playdates',
+    },
+    {
+      id: '3',
+      image: images.communities,
+      subText: 'Bring dog lovers together',
+    },
   ];
 
   const viewableItemsChanged = useRef(({ viewableItems }) => {
@@ -21,23 +35,19 @@ const LandingScreen = ({ navigation }) => {
   }).current;
 
   const renderItem = ({ item }) => (
-    <View style={[styles.carouselItem, { backgroundColor: item.color }]} />
+    <View style={styles.carouselItem}>
+      <Image source={item.image} style={styles.carouselImage} />
+    </View>
   );
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Logo */}
-      <Image source={{ uri: 'https://via.placeholder.com/75' }} style={styles.logo} />
-
-      {/* Main Text */}
+      <Image source={icons.logoWhite} style={styles.logo} />
       <Text style={styles.mainText}>Bestie</Text>
-      
-      {/* Sub Text */}
       <Text style={styles.subText}>
-      Connect with dog lovers and {"\n"}plan playdates for your furry friends
+        {carouselItems[activeIndex].subText}
       </Text>
-
-      {/* Carousel */}
+      
       <FlatList
         data={carouselItems}
         horizontal
@@ -49,14 +59,13 @@ const LandingScreen = ({ navigation }) => {
         viewabilityConfig={viewabilityConfig}
         style={styles.carousel}
         contentContainerStyle={{
-          paddingHorizontal: (width * 0.1) / 2,  // Ensures items are centered
+          paddingHorizontal: (10),
         }}
-        snapToAlignment="center"  // Snap to center alignment
-        snapToInterval={width * 0.8 + 15 }  // The item width + margin
-        decelerationRate="fast"  // Makes the scrolling snap faster
+        snapToAlignment="center"
+        snapToInterval={width}
+        decelerationRate="fast"
       />
 
-      {/* Pagination Dots */}
       <View style={styles.pagination}>
         {carouselItems.map((_, i) => (
           <View
@@ -69,10 +78,8 @@ const LandingScreen = ({ navigation }) => {
         ))}
       </View>
 
-      {/* Start Button */}
       <TouchableOpacity style={styles.startButton} onPress={() => navigation.navigate('RegistrationScreen')}>
-        <Text style={styles.startButtonText}>Ready to go?
-        </Text>
+        <Text style={styles.startButtonText}>Ready to go?</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -86,35 +93,40 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 75,
-    height: 75,
-    marginBottom: '5%',
+    width: 60,
+    height: 60,
+    marginBottom: '3%',
     marginTop: '25%',
   },
   mainText: {
-    fontSize: 32,
+    fontSize: 40,
     color: colors.onboardingMainText,
     fontWeight: 'bold',
-    marginBottom: '2.5%',
+    marginBottom: '8%',
   },
   subText: {
-    fontSize: 16,
+    fontSize: 18,
     color: colors.onboardingMainText,
     textAlign: 'center',
-    marginBottom: '12.5%',
+    marginBottom: '5%',
   },
   carousel: {
     marginBottom: '5%',
-    
   },
   carouselItem: {
-    width: width * 0.77,
+    width: width, // Set width to match the screen width
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  carouselImage: {
+    width: '70%', // Adjust width to reduce image size
+    height: width * 0.7, // Adjust height for a proportional image
     borderRadius: 10,
-    marginHorizontal: '1%',
+    opacity: 0.82,
   },
   pagination: {
     flexDirection: 'row',
-    marginBottom: '51%',
+    marginBottom: '40%',
   },
   dot: {
     width: 8,
@@ -128,10 +140,9 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 25,
     position: 'absolute',
-    bottom: '10%',
+    bottom: '7.5%',
     width: '80%',
     alignItems: 'center',
-    
   },
   startButtonText: {
     fontSize: 20,

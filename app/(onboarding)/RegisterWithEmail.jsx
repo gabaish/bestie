@@ -182,8 +182,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.onboardingSecondaryText,
     textAlign: 'center',
-    marginTop: 20,
-    paddingHorizontal: 20,
+    marginTop: 25,
+    width:'80%',
   },
   linkText: {
     color: 'white',

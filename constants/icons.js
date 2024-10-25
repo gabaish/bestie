@@ -8,7 +8,8 @@ import dogSizeMedium from '../assets/icons/registration/dogSizeMedium.png';
 import dogSizeSmall from '../assets/icons/registration/dogSizeSmall.png';
 import google from '../assets/icons/registration/google.png'
 import apple from '../assets/icons/registration/apple.png'
-
+import logo from '../assets/icons/registration/Logo.png'
+import logoWhite from '../assets/icons/registration/LogoWhite.png'
 
 export default{
     friends,
@@ -20,5 +21,7 @@ export default{
     dogSizeMedium,
     dogSizeSmall,
     google,
-    apple
+    apple,
+    logo,
+    logoWhite,
 };
