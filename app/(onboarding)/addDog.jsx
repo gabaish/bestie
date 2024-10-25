@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, Dimensions, Alert,SafeAreaView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView , Platform} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { colors } from '../../constants/colors';
+import { OnboardingHeadline } from '../../components/onboardingComponents';
 
 const { width } = Dimensions.get('window');
 
@@ -47,8 +48,7 @@ const AddDogScreen = ({ navigation }) => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <SafeAreaView style={styles.container}>
     
-      {/* Main Title */}
-      <Text style={styles.mainText}>Let’s meet your dog!</Text>
+      <OnboardingHeadline title="Let’s meet your dog!" style={styles.customHeadline}/>
 
       {/* Image Picker Button */}
       <TouchableOpacity style={styles.imageContainer} onPress={pickImage}>
@@ -95,13 +95,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.onboardingBackground,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  mainText: {
-    fontSize: 32,
-    color: colors.onboardingMainText,
-    fontWeight: 'bold',
+  customHeadline: {
     marginBottom: 50,
   },
   imageContainer: {

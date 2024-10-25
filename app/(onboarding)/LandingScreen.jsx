@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList, Dimensions, 
 import { colors } from '../../constants/colors';
 import { icons } from '../../constants';
 import { images } from '../../constants';
+import { OnboardingButton } from '../../components/onboardingComponents';
 
 const { width } = Dimensions.get('window');
 
@@ -78,9 +79,8 @@ const LandingScreen = ({ navigation }) => {
         ))}
       </View>
 
-      <TouchableOpacity style={styles.startButton} onPress={() => navigation.navigate('RegistrationScreen')}>
-        <Text style={styles.startButtonText}>Ready to go?</Text>
-      </TouchableOpacity>
+      <OnboardingButton title="Ready to go?" onPress= {() => navigation.navigate('RegistrationScreen')}/>
+
     </SafeAreaView>
   );
 };
