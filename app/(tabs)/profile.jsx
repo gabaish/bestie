@@ -23,15 +23,8 @@ const ProfileScreen = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [dogPhoto, setDogPhoto] = useState(null); // Move useState inside component
 
-
-    // Function to open the image modal
-    const handleImagePress = () => {
-        setModalVisible(true);
-    };
-
-    // Function to close the image modal
-    const handleCloseModal = () => {
-        setModalVisible(false);
+    const toggleModal = () => {
+        setModalVisible(!modalVisible);
     };
 
     const pickImage = async () => {
@@ -57,7 +50,7 @@ const ProfileScreen = () => {
         <View style={styles.dogInfoContainer}>
             {/* Clickable Avatar */}
             <View style={styles.nameAndImg}>
-                <TouchableOpacity onPress={handleImagePress}>
+                <TouchableOpacity onPress={toggleModal}>
                 <Image source={dogPhoto ? { uri: dogPhoto } : avatarImage} style={styles.avatar} />
                 </TouchableOpacity>
                 <Text style={[styles.label, {fontSize:24}]}> {dogInfo.name} </Text>
@@ -161,7 +154,7 @@ const ProfileScreen = () => {
                 visible={modalVisible}
                 transparent={true}
                 animationType="fade"
-                onRequestClose={handleCloseModal}
+                onRequestClose={toggleModal}
             >
                 <View style={styles.modalContainer}>
                     <View style={styles.modalContent}>
@@ -169,7 +162,7 @@ const ProfileScreen = () => {
                     <TouchableOpacity style={styles.modalButton} onPress={pickImage}>
                             <Text style={styles.modalButtonText}>Change Image</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.modalCloseButton} onPress={handleCloseModal}>
+                        <TouchableOpacity style={styles.modalCloseButton} onPress={toggleModal}>
                             <Text style={styles.modalButtonText}>Close</Text>
                         </TouchableOpacity>
                     </View>

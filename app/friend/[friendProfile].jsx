@@ -26,20 +26,15 @@ const ProfileScreen = () => {
 
 
     // Function to open the image modal
-    const handleImagePress = () => {
-        setModalVisible(true);
-    };
-
-    // Function to close the image modal
-    const handleCloseModal = () => {
-        setModalVisible(false);
+    const toggleModal = () => {
+        setModalVisible(!modalVisible);
     };
     
     const renderDogInfo = () => (
         <View style={styles.dogInfoContainer}>
             {/* Clickable Avatar */}
             <View style={styles.nameAndImg}>
-                <TouchableOpacity onPress={handleImagePress}>
+                <TouchableOpacity onPress={toggleModal}>
                 <Image source={dogPhoto ? { uri: dogPhoto } : avatarImage} style={styles.avatar} />
                 </TouchableOpacity>
                 <Text style={[styles.label, {fontSize:24}]}> {name} </Text>
@@ -135,12 +130,12 @@ const ProfileScreen = () => {
                 visible={modalVisible}
                 transparent={true}
                 animationType="fade"
-                onRequestClose={handleCloseModal}
+                onRequestClose={toggleModal}
             >
                 <View style={styles.modalContainer}>
                     <View style={styles.modalContent}>
                          <Image source={dogPhoto ? { uri: dogPhoto } : avatarImage} style={styles.largeAvatar} />
-                        <TouchableOpacity style={styles.modalCloseButton} onPress={handleCloseModal}>
+                        <TouchableOpacity style={styles.modalCloseButton} onPress={toggleModal}>
                             <Text style={styles.modalButtonText}>Close</Text>
                         </TouchableOpacity>
                     </View>
