@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, TextInput, FlatList, TouchableOpacity, Image, StyleSheet, SafeAreaView } from 'react-native';
-import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, FlatList, TouchableOpacity, Image, StyleSheet, SafeAreaView } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { colors } from '../../constants/colors';
+import { TabsSearchBar, TabsHeadline } from '../../components/tabsComponents';
 
 // Sample message data
 const messages = [
@@ -45,19 +45,12 @@ const MessagesTab = () => {
             {/* Header Section */}
             <View style={styles.header}>
                 <View style={styles.headerTopRow}>
-                    <Text style={styles.headerTitle}>Messages</Text>
+                    <TabsHeadline title="Messages"/>
                     <MaterialIcons name="notifications-none" size={24} color={colors.tabsPrimary} />
                 </View>
 
                 {/* Search Bar */}
-                <View style={styles.searchContainer}>
-                    <TextInput
-                        style={styles.searchBar}
-                        placeholder="Search"
-                        placeholderTextColor={colors.tabsSecondaryText}
-                    />
-                    <MaterialIcons name="search" size={24} color={colors.tabsSecondaryText} style={styles.searchIcon} />
-                </View>
+                <TabsSearchBar/>
             </View>
 
             {/* Messages List */}
@@ -84,36 +77,11 @@ const styles = StyleSheet.create({
     header: {
         padding: 20,
         backgroundColor: colors.tabsBackground,
-        borderBottomLeftRadius: 30,
-        borderBottomRightRadius: 30,
     },
     headerTopRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-    },
-    headerTitle: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: colors.tabsPrimary,
-    },
-    // Search Bar with Icon
-    searchContainer: {
-        position: 'relative',
-        marginTop: 10,
-    },
-    searchBar: {
-        paddingRight: 40, // Add padding to the right so the text doesn't overlap the icon
-        paddingHorizontal: 15,
-        paddingVertical: 10,
-        backgroundColor: colors.tabsSeondary,
-        borderRadius: 20,
-        color: colors.tabsSecondaryText,
-    },
-    searchIcon: {
-        position: 'absolute',
-        right: 10, // Position the icon at the right end of the TextInput
-        top: 7, // Adjust the top position to vertically center the icon
     },
     // Messages List
     messageList: {

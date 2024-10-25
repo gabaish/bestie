@@ -4,6 +4,7 @@ import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { images } from '../../constants';
 import { colors } from '../../constants/colors';
 import { useRouter } from 'expo-router';
+import { TabsSearchBar, TabsHeadline } from '../../components/tabsComponents';
 
 const friends = [
     { id: '1', name: 'Boca', image: 'https://example.com/dog1.jpg' },
@@ -29,16 +30,9 @@ const FriendsTab = () => {
             
             <View style={styles.header}>
                 <View style={styles.headerTopRow}>
-                    <Text style={styles.headerTitle}>Friends</Text>
+                    <TabsHeadline title="Friends"/>
                 </View>
-                <View style={styles.searchContainer}>
-                    <TextInput
-                        style={styles.searchBar}
-                        placeholder="Search"
-                        placeholderTextColor={colors.tabsSecondaryText}
-                    />
-                    <MaterialIcons name="search" size={24} color={colors.tabsSecondaryText} style={styles.searchIcon} />
-                </View>
+                <TabsSearchBar/>
             </View>
 
             {/* Favorite Friends Section */}
@@ -93,25 +87,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    headerTitle: {
-      paddingLeft:10,
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: colors.tabsPrimary,
-    },
-    searchBar: {
-        marginTop: 10,
-        paddingHorizontal: 15,
-        paddingVertical: 10,
-        backgroundColor: colors.tabsSeondary,
-        borderRadius: 20,
-        color: '#2C3E50',
-    },
-    searchIcon: {
-        position: 'absolute',
-        right: 10,
-        top: 18, // Adjust the top position to vertically center the icon
-    },
+    
     // Favorite Friends Section
     favoriteSection: {
         padding: 20,
@@ -152,7 +128,6 @@ const styles = StyleSheet.create({
     friendItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 0,
         backgroundColor: colors.tabsMainText,
         padding: 15,
         borderRadius: 10,

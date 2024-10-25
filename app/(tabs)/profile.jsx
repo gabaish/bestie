@@ -5,6 +5,7 @@ import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker'; // Add ImagePicker import
 import { useNavigation } from '@react-navigation/native';
 import { colors } from '../../constants/colors';
+import { TabsHeadline } from '../../components/tabsComponents';
 
 const avatarImage = require('../../assets/images/boca2.png'); // Make sure this image path is correct
 
@@ -121,7 +122,7 @@ const ProfileScreen = () => {
         <SafeAreaView style={styles.container}>
             {/* Profile Header */}
             <View style={styles.headerContainer}>
-                <Text style={styles.headerText}>Profile</Text>
+                <TabsHeadline title="Profile"/>
 
                 {/* Right side icons */}
                 <View style={styles.headerIcons}>
@@ -193,11 +194,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop:20,
         paddingHorizontal:20,
-    },
-    headerText: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: colors.tabsPrimary,
     },
     headerIcons: {
         flexDirection: 'row',

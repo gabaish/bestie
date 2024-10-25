@@ -1,8 +1,6 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { colors } from '../constants/colors';
-
-const { height } = Dimensions.get('window');
 
 export const OnboardingButton = ({ title, onPress }) => {
     return (
@@ -39,5 +37,6 @@ const styles = StyleSheet.create({
         color: colors.onboardingMainText,
         fontWeight: 'bold',
         marginTop:'33%',
-    }
+    },
+    
 });
