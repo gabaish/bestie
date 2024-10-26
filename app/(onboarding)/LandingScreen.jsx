@@ -122,11 +122,11 @@ const styles = StyleSheet.create({
     width: '70%', // Adjust width to reduce image size
     height: width * 0.7, // Adjust height for a proportional image
     borderRadius: 10,
-    opacity: 0.82,
+    opacity: 0.85,
   },
   pagination: {
     flexDirection: 'row',
-    marginBottom: '40%',
+    marginBottom: '45%',
   },
   dot: {
     width: 8,
@@ -135,15 +135,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.onboardingMainText,
     marginHorizontal: 4,
   },
-  startButton: {
-    backgroundColor: colors.onboardingButton,
-    padding: 15,
-    borderRadius: 25,
-    position: 'absolute',
-    bottom: '7.5%',
-    width: '80%',
-    alignItems: 'center',
-  },
+  
   startButtonText: {
     fontSize: 20,
     color: 'white',
