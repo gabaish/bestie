@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "scheme": "bestie",
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "name": "bestie",
+    "slug": "bestie",
+    "orientation": "portrait",
+    "ios":{
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app requires access to your location to display your current position on the map."
+      }
+    }
+  }
+}
