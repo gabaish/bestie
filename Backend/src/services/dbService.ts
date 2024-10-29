@@ -9,7 +9,7 @@ const pool = new Pool({
 });
 
 
-export const createUser = async (email: string, name: string,  auth: string, externalId: number): Promise<User> => {
-    const result = await pool.query('INSERT INTO users (email,name,auth_provider,external_id) VALUES ($1, $2, $3, $4) RETURNING *', [email,name,auth,externalId]);
+export const createUser = async (email: string, name: string, password:string): Promise<User> => {
+    const result = await pool.query('INSERT INTO users (email,name,password) VALUES ($1, $2, $3) RETURNING *', [email,name,password]);
     return result.rows[0];
 }

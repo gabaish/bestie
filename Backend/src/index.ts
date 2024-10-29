@@ -5,8 +5,13 @@ import registrationRoutes from './routes/registrationRoutes';
 dotenv.config();
 
 const app = express();
-app.use(express.json());
 
+app.use((req, res, next) => {
+    console.log('Received a request');
+    next();
+});
+
+app.use(express.json());
 app.use('/api', registrationRoutes);
 
 const PORT = process.env.PORT;

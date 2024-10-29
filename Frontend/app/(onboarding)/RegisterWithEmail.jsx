@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, Dimensions, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { colors } from '../../constants/colors';
-
-const { width } = Dimensions.get('window');
+import { API_BASE_URL } from '@env';
 
 const RegisterWithEmail = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -48,10 +47,34 @@ const RegisterWithEmail = ({ navigation }) => {
     return true;
   };
 
-  const handleCreateAccount = () => {
+  const handleCreateAccount = async () => {
     if (validateInputs()) {
-      console.log('Account created with:', { name, email, password });
-      navigation.replace('(tabs)'); // Navigate to the main app page
+      console.log('trying to send message to API: ', API_BASE_URL);
+      try {
+        const response = await fetch(`${API_BASE_URL}/users`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json',},
+            body: JSON.stringify({
+              name: name,
+              email: email,
+              password: password
+            }),
+          }
+        );
+
+        if(response.ok) {
+          const data = await response.json();
+          console.log('User created successfully:', data);
+          navigation.replace('(tabs)');
+        }
+        else {
+          const errorData = await response.json();
+          console.error('Error: ', errorData);          
+        }
+      } catch (error) {
+        console.error( 'Network error: ', error);
+      }
     }
   };
 
