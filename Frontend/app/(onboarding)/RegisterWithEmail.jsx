@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, Dimensions, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { colors } from '../../constants/colors';
 import { API_BASE_URL } from '@env';
+import { useUser } from '../contexts/UserContext';
 
 const RegisterWithEmail = ({ navigation }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  const { setUser } = useUser();
 
   const validateInputs = () => {
     // Name validation
@@ -49,7 +51,6 @@ const RegisterWithEmail = ({ navigation }) => {
 
   const handleCreateAccount = async () => {
     if (validateInputs()) {
-      console.log('trying to send message to API: ', API_BASE_URL);
       try {
         const response = await fetch(`${API_BASE_URL}/users`,
           {
@@ -66,6 +67,8 @@ const RegisterWithEmail = ({ navigation }) => {
         if(response.ok) {
           const data = await response.json();
           console.log('User created successfully:', data);
+          console.log('User id just updated to:', data.user_id);
+          setUser(data.user_id);
           navigation.replace('(tabs)');
         }
         else {

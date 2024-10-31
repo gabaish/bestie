@@ -4,13 +4,14 @@ import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image, SafeAreaVi
 import { icons } from '../../constants';
 import { colors } from '../../constants/colors';
 import { OnboardingHeadline } from '../../components/onboardingComponents';
-
-const { width } = Dimensions.get('window');
+import { API_BASE_URL } from '@env';
+import { useUser } from '../contexts/UserContext';
 
 const RegistrationScreen = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { setUser } = useUser();
 
   const handleNavigation = (navigateTo) => {
     navigation.navigate(navigateTo);
@@ -20,10 +21,36 @@ const RegistrationScreen = ({ navigation }) => {
     setModalVisible(false);
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (email && password) {
-      closeModal();
-      // Add further login logic here, e.g., API request
+      // verify the entered data with the API 
+      try {
+        const response = await fetch(`${API_BASE_URL}/login`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json',},
+            body: JSON.stringify({
+              email: email,
+              password: password
+            }),
+          }
+        );
+        if(response.ok) {
+          const data = await response.json();
+          setUser(data.user_id);
+          console.log("user_id is currently: ", data.user_id);
+          closeModal();
+          handleNavigation('AddDog');
+        } else if(response.status === 404) {
+          Alert.alert("User Not Found", "Please check the email and try again.");
+        } else if(response.status === 401){
+          Alert.alert("Incorrect Password", "The password you entered is incorrect. Please try again.");
+        } else {
+          Alert.alert("Login Failed", "An unexpected error occurred. Please try again.");
+        }
+      } catch(error) {
+        console.error( 'Network error: ', error);
+      }
     } else {
       Alert.alert("Incomplete Information", "Please enter both email and password.");
     }
