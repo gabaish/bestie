@@ -4,7 +4,7 @@ import MapView, { Marker, Circle } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { MaterialIcons } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
-import { icons } from '../../constants';
+import { icons} from '../../constants';
 import { colors } from '../../constants/colors';
 
 const { width, height } = Dimensions.get('window');
@@ -181,17 +181,17 @@ export default function MapComponent() {
             <View style={[styles.dropdownContainer, styles.modalDropdown, {top:'22%'}]}>
               <TouchableOpacity  onPress={() => { toggleSize('Small'); }}>
                 <View >
-                  <Image source={icons.dogSizeSmall} resizeMode="contain" style={[{ width: 40, height: 40, paddingVertical:50}, styles.filterOption, isSelectedSize("Small")?styles.selectedFilterOption:null]} />
+                  <Image source={icons.dogSizeSmall} resizeMode="contain" style={[{ width: 40, height: 40}, styles.filterOption, isSelectedSize("Small")?styles.selectedFilterOption:null]} />
                 </View>
               </TouchableOpacity>
               <TouchableOpacity  onPress={() => { toggleSize('Medium'); }}>
                 <View >
-                  <Image source={icons.dogSizeMedium} resizeMode="contain" style={[{ width: 60, height: 60, paddingVertical:50}, styles.filterOption, isSelectedSize("Medium")?styles.selectedFilterOption:null]} />
+                  <Image source={icons.dogSizeMedium} resizeMode="contain" style={[{ width: 60, height: 60}, styles.filterOption, isSelectedSize("Medium")?styles.selectedFilterOption:null]} />
                 </View>
               </TouchableOpacity>
               <TouchableOpacity  onPress={() => { toggleSize('Big');}}>
                 <View >
-                  <Image source={icons.dogSizeBig} resizeMode="contain" style={[{ width: 80, height: 80, paddingVertical:50}, styles.filterOption, isSelectedSize("Big")?styles.selectedFilterOption:null]} />
+                  <Image source={icons.dogSizeBig} resizeMode="contain" style={[{ width: 80, height: 80}, styles.filterOption, isSelectedSize("Big")?styles.selectedFilterOption:null]} />
                 </View>
               </TouchableOpacity>
             </View>
@@ -420,7 +420,7 @@ const styles = StyleSheet.create({
   modalDropdown: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'flex-end'
+    alignItems: 'center'
   },
   filterOption:{
     color: colors.tabsSeondary,

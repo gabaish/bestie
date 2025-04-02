@@ -3,14 +3,17 @@ import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, Modal,SafeA
 import Slider from '@react-native-community/slider'; // Correct import
 import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker'; // Add ImagePicker import
-import { useNavigation } from '@react-navigation/native';
+
+import { useRouter } from 'expo-router';
 import { colors } from '../../constants/colors';
 import { TabsHeadline } from '../../components/tabsComponents';
 
 const avatarImage = require('../../assets/images/boca2.png'); // Make sure this image path is correct
 
 const ProfileScreen = () => {
-  const navigation = useNavigation();
+    const router = useRouter();
+
+  
     const [activeTab, setActiveTab] = useState('dogInfo');
     const [dogInfo, setDogInfo] = useState({
         name: 'Boca',
@@ -124,7 +127,7 @@ const ProfileScreen = () => {
                     </TouchableOpacity>
                     <TouchableOpacity 
                       style={styles.settingsIcon}
-                      onPress={() => navigation.navigate('settings')}>
+                      onPress={() => router.push('/settings')}>
                         <MaterialIcons name="settings" size={24} color={colors.tabsPrimary} />
                     </TouchableOpacity>
                 </View>

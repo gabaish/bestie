@@ -3,15 +3,16 @@ import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, Modal,SafeA
 import Slider from '@react-native-community/slider'; // Correct import
 import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker'; // Add ImagePicker import
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
+
 import { useLocalSearchParams } from 'expo-router';
 import { colors } from '../../constants/colors';
 
 const avatarImage = require('../../assets/images/boca2.png'); // Make sure this image path is correct
 
 const ProfileScreen = () => {
-  const navigation = useNavigation();
-  const { name } = useLocalSearchParams();
+    const router = useRouter();
+    const { name } = useLocalSearchParams();
     const [activeTab, setActiveTab] = useState('dogInfo');
     const [dogInfo, setDogInfo] = useState({
         name: 'Boca',
@@ -100,7 +101,7 @@ const ProfileScreen = () => {
         <SafeAreaView style={styles.container}>
             {/* Profile Header */}
             <View style={styles.headerContainer}>
-                <TouchableOpacity  onPress={() => navigation.goBack()}>
+                <TouchableOpacity  onPress={() => router.back()}>
                     <FontAwesome5 name="chevron-left" size={20} color={colors.tabsPrimary} />
                 </TouchableOpacity>
                 <Text style={styles.headerText}>Profile</Text>

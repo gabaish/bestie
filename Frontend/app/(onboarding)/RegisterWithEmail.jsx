@@ -3,8 +3,10 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, Dime
 import { colors } from '../../constants/colors';
 import { API_BASE_URL } from '@env';
 import { useUser } from '../contexts/UserContext';
+import { useRouter } from 'expo-router';
 
-const RegisterWithEmail = ({ navigation }) => {
+const RegisterWithEmail = () => {
+  const router = useRouter();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -52,6 +54,7 @@ const RegisterWithEmail = ({ navigation }) => {
   const handleCreateAccount = async () => {
     if (validateInputs()) {
       try {
+        console.log('sending request');
         const response = await fetch(`${API_BASE_URL}/users`,
           {
             method: 'POST',
@@ -69,7 +72,7 @@ const RegisterWithEmail = ({ navigation }) => {
           console.log('User created successfully:', data);
           console.log('User id just updated to:', data.user_id);
           setUser(data.user_id);
-          navigation.replace('(tabs)');
+          router.replace('/(onboarding)/addDog'); // TODO - does it make sense to go to addDog from here? or right into the app?
         }
         else {
           const errorData = await response.json();

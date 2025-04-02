@@ -6,15 +6,17 @@ import { colors } from '../../constants/colors';
 import { OnboardingHeadline } from '../../components/onboardingComponents';
 import { API_BASE_URL } from '@env';
 import { useUser } from '../contexts/UserContext';
+import { useRouter } from 'expo-router';
 
-const RegistrationScreen = ({ navigation }) => {
+const RegistrationScreen = () => {
+  const router = useRouter();
   const [isModalVisible, setModalVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { setUser } = useUser();
 
   const handleNavigation = (navigateTo) => {
-    navigation.navigate(navigateTo);
+    router.push(navigateTo);
   };
 
   const closeModal = () => {
@@ -40,7 +42,7 @@ const RegistrationScreen = ({ navigation }) => {
           setUser(data.user_id);
           console.log("user_id is currently: ", data.user_id);
           closeModal();
-          handleNavigation('AddDog');
+          handleNavigation('/(onboarding)/addDog');
         } else if(response.status === 404) {
           Alert.alert("User Not Found", "Please check the email and try again.");
         } else if(response.status === 401){
@@ -66,13 +68,13 @@ const RegistrationScreen = ({ navigation }) => {
       </Text>
 
       {/* Google Login Button */}
-      <TouchableOpacity style={[styles.button, styles.googleButton]} onPress={() => handleNavigation('AddDog')}>
+      <TouchableOpacity style={[styles.button, styles.googleButton]} onPress={() => handleNavigation('/(onboarding)/addDog')}>
         <Text style={styles.buttonText}>Log in with Google</Text>
         <Image source={icons.google} style={styles.icon} />
       </TouchableOpacity>
 
       {/* Apple Login Button */}
-      <TouchableOpacity style={[styles.button, styles.appleButton]} onPress={() => handleNavigation('AddDog')}>
+      <TouchableOpacity style={[styles.button, styles.appleButton]} onPress={() => handleNavigation('/(onboarding)/addDog')}>
         <Text style={[styles.buttonText, styles.appleButtonText]}>Log in with Apple</Text>
         <Image source={icons.apple} style={styles.icon} />
       </TouchableOpacity>
@@ -81,7 +83,7 @@ const RegistrationScreen = ({ navigation }) => {
       <Text style={[styles.subText, styles.orSubText]}>or</Text>
 
       {/* Email Login Button */}
-      <TouchableOpacity style={[styles.button, styles.emailButton]} onPress={() => handleNavigation('RegisterWithEmail')}>
+      <TouchableOpacity style={[styles.button, styles.emailButton]} onPress={() => handleNavigation('/(onboarding)/RegisterWithEmail')}>
         <Text style={styles.buttonText}>Register with an email</Text>
         <MaterialIcons name="mail" size={20} color="#F2F2F2" />
       </TouchableOpacity>

@@ -3,7 +3,7 @@ import { View, Text, TextInput, FlatList, TouchableOpacity, StyleSheet, Keyboard
 import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useLocalSearchParams } from 'expo-router'; // Import for dynamic route params
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../../constants/colors';
 
@@ -19,7 +19,8 @@ const messagesData = [
 ];
 
 const ConversationScreen = () => {
-    const navigation = useNavigation();
+    
+    const router = useRouter();
     const { id, name } = useLocalSearchParams(); // Get the dynamic 'id' from the route
 
     const [messageInput, setMessageInput] = useState('');
@@ -68,7 +69,7 @@ const ConversationScreen = () => {
                 <View style={styles.container}>
                     {/* Header */}
                     <View style={styles.header}>
-                        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                        <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
                             <FontAwesome5 name="chevron-left" size={20} color={colors.tabsPrimary} />
                         </TouchableOpacity>
                         <Image source={avatarImage} style={styles.avatar} />

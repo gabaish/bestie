@@ -3,10 +3,12 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, Dimensions,
 import * as ImagePicker from 'expo-image-picker';
 import { colors } from '../../constants/colors';
 import { OnboardingHeadline } from '../../components/onboardingComponents';
+import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 
-const AddDogScreen = ({ navigation }) => {
+const AddDogScreen = () => {
+  const router = useRouter();
   const [dogName, setDogName] = useState('');
   const [dogPhoto, setDogPhoto] = useState(null);
 
@@ -38,7 +40,7 @@ const AddDogScreen = ({ navigation }) => {
       // Show alert if dog name or photo is not provided
       Alert.alert('Incomplete Information', 'Please provide both the dog name and photo.');
     } else {
-      navigation.navigate('QuestionnaireScreen', { dogName: dogName });
+      router.push({pathname: '/(onboarding)/[QuestionnaireScreen]', params: { dogName }});
     }
   };
 

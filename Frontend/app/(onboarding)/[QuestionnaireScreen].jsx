@@ -4,10 +4,14 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { icons } from '../../constants';
 import { colors } from '../../constants/colors';
 import { OnboardingHeadline, OnboardingButton } from '../../components/onboardingComponents';
+import { useLocalSearchParams  } from 'expo-router';
+//const params = useLocalSearchParams();
+import { useRouter } from 'expo-router';
 
 const { width, height } = Dimensions.get('window');
 
-const QuestionnaireScreen = ({ navigation, route }) => {
+const QuestionnaireScreen = () => {
+  const router = useRouter();
   const [breedDropdownVisible, setBreedDropdownVisible] = useState(false);
   const [selectedBreed, setSelectedBreed] = useState('');
   const [breedSearchText, setBreedSearchText] = useState('');
@@ -21,7 +25,8 @@ const QuestionnaireScreen = ({ navigation, route }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [birthDate, setBirthDate] = useState('');
 
-  const { dogName } = route.params || {};
+  const { dogName } =useLocalSearchParams();
+  
 
   const handleBreedSelect = (breed) => {
     setSelectedBreed(breed);
@@ -49,7 +54,7 @@ const QuestionnaireScreen = ({ navigation, route }) => {
   };
 
   const handleAddButton = () => {
-    navigation.replace('(tabs)');
+    router.replace('/(tabs)/home');
   };
 
   return (
@@ -143,17 +148,17 @@ const QuestionnaireScreen = ({ navigation, route }) => {
           <View style={[styles.dropdownContainer, styles.modalDropdown, { top: '120%' }]}>
             <TouchableOpacity style={styles.sizeOption} onPress={() => { setSelectedSize('Small'); setSizeDropdownVisible(false); }}>
               <View style={styles.iconWithLabel}>
-                <Image source={icons.dogSizeSmall} resizeMode="contain" style={{ width: 40, height: 40, paddingVertical:50 }} />
+                <Image source={icons.dogSizeSmall} resizeMode="contain" style={{ width: 40, height: 40 }} />
               </View>
             </TouchableOpacity>
             <TouchableOpacity style={styles.sizeOption} onPress={() => { setSelectedSize('Medium'); setSizeDropdownVisible(false); }}>
               <View style={styles.iconWithLabel}>
-                <Image source={icons.dogSizeMedium} resizeMode="contain" style={{ width: 60, height: 60, paddingVertical:50 }} />
+                <Image source={icons.dogSizeMedium} resizeMode="contain" style={{ width: 60, height: 60}} />
               </View>
             </TouchableOpacity>
             <TouchableOpacity style={styles.sizeOption} onPress={() => { setSelectedSize('Big'); setSizeDropdownVisible(false); }}>
               <View style={styles.iconWithLabel}>
-                <Image source={icons.dogSizeBig} resizeMode="contain" style={{ width: 80, height: 80, paddingVertical:50 }} />
+                <Image source={icons.dogSizeBig} resizeMode="contain" style={{ width: 80, height: 80 }} />
               </View>
             </TouchableOpacity>
           </View>

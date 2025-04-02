@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginHorizontal: 10, 
         elevation: 4,
-        marginBottom: -30
+        marginBottom: -12
     },
     tabBarStyle: {
         backgroundColor: colors.tabsPrimary, 

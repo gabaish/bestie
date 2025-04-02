@@ -4,10 +4,12 @@ import { colors } from '../../constants/colors';
 import { icons } from '../../constants';
 import { images } from '../../constants';
 import { OnboardingButton } from '../../components/onboardingComponents';
+import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 
-const LandingScreen = ({ navigation }) => {
+const LandingScreen = () => {
+  const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
   const viewabilityConfig = { viewAreaCoveragePercentThreshold: 50 };
 
@@ -79,7 +81,7 @@ const LandingScreen = ({ navigation }) => {
         ))}
       </View>
 
-      <OnboardingButton title="Ready to go?" onPress= {() => navigation.navigate('RegistrationScreen')}/>
+      <OnboardingButton title="Ready to go?" onPress= {() => router.push('/(onboarding)/RegistrationScreen')}/>
 
     </SafeAreaView>
   );
