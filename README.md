@@ -38,21 +38,21 @@ An emulator or the Expo Go app on your phone
 
 ## Running Locally
 
-1. Clone the repository
+1. Clone the repository  
 
-git clone https://github.com/gabaish/bestie.git
+git clone https://github.com/gabaish/bestie.git  
 cd bestie
 
-2. Start the Backend
+2. Start the Backend  
 
-cd backend
-npm install
+cd backend  
+npm install  
 npm start
 
-3. Start the Frontend
+3. Start the Frontend  
 
-cd frontend
-npm install
+cd frontend  
+npm install  
 npx expo start
 
 This will open the Expo Developer Tools in your browser
