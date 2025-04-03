@@ -1,17 +1,17 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import { colors } from '../constants/colors';
 
 const SettingsScreen = () => {
-    const navigation = useNavigation(); // Initialize navigation hook
+    const router = useRouter();
 
     return (
         <SafeAreaView style={styles.container}>
             {/* Settings Header */}
             <View style={styles.headerContainer}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
                     <FontAwesome5 name="chevron-left" size={20} color={colors.tabsPrimary} />
                 </TouchableOpacity>
                 <Text style={styles.headerText}>Settings</Text>

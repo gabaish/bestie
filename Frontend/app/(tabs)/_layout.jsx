@@ -129,14 +129,14 @@ const styles = StyleSheet.create({
     tabBarStyle: {
         backgroundColor: colors.tabsPrimary, 
         borderTopWidth: 0, 
-        height: 50, 
+        height: 50,
+        width: 340,
+        alignSelf: 'center',
         position: 'absolute',
         bottom: 65, 
-        left: '10%',
-        right: '10%',
+        marginLeft: '7%',
         justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center',
         borderRadius:25,
         
     }
