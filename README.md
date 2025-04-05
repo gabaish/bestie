@@ -14,6 +14,8 @@ Chat with other dog owners
 
 Build a local community of dog lovers
 
+Landing page: https://gabaish.github.io/bestie/
+
 ## Tech Stack
 
 Frontend: React Native (Expo)
